@@ -10,7 +10,7 @@
 		enable = true;
 		enableFishIntegration = true;
 		enableBashIntegration = true;
-		shellWrapperName = "y";
+		# shellWrapperName = "y";
 
 		yaziPlugins = {
 			enable = true;

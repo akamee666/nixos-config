@@ -86,13 +86,12 @@
     isNormalUser = true;
     description = "akame";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    # TTY default shell
+    shell = pkgs.fish;
   };
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "akame";
-
-  
   environment.variables.EDITOR = "nvim";
 
   system.stateVersion = "25.05"; # Did you read the comment?

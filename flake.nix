@@ -20,8 +20,17 @@
     };
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Command-not-found 
+    # NixOS systems configured with flakes and thus lacking channels usually have a broken command-not-found. The reason is that the backing database programs.sqlite is only available on channels. The problem is that the channel URL can not be determined from the nixpkgs revision alone, as it also contains a build number.
+    flake-programs-sqlite = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
@@ -58,6 +67,7 @@
         modules = [
           # > Our main nixos configuration file <
           ./hosts/nixos/configuration.nix
+	   inputs.flake-programs-sqlite.nixosModules.programs-sqlite
         ];
       };
     };
