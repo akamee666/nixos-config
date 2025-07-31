@@ -34,6 +34,8 @@
   };
 
   home.packages = with pkgs; [ 
+    gohufont # font
+    nerd-fonts.gohufont # font but nerdy
     brave # browser
     alacritty # terminal emulator
     fish # shell

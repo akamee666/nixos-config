@@ -2,4 +2,4 @@
 imports = [
 ./hyprland.nix
 ];
-};
+}

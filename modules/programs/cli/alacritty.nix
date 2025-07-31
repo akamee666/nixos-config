@@ -1,6 +1,7 @@
 {lib, ...}: {
   programs.alacritty = let
-    font_family = lib.mkForce "Maple Mono NF";
+    # font_family = lib.mkForce "GohuFont Nerd Font";
+    font_family = "GohuFont 14 Nerd Font Mono"; # Mono and not Propo because Propo height changes
   in {
     enable = true;
     settings = {
@@ -21,7 +22,7 @@
           family = font_family;
           style = "Bold Italic";
         };
-        size = 15;
+        size = 11;
       };
     };
   };

@@ -14,7 +14,7 @@
           "$mainMod" = "SUPER";
 	  # FIXME: Change to alacritty
           # "$term" = "${getExe pkgs.${terminal}}";
-	  "$term" = "kitty";
+	  "$term" = "alacritty";
           "$editor" = "nvim";
 	  # FIXME: Use ${terminalFileManager}
           "$fileManager" = "$term --class \"terminalFileManager\" -e yazi";
