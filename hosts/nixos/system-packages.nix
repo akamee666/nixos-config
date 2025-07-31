@@ -7,7 +7,6 @@
     tree
     eza
     fd
-    libinput
   ];
 
   # This will be pulled by nixpkgs

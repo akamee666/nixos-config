@@ -9,12 +9,20 @@
     # Hyprland
     hyprland = {  
       url = "github:hyprwm/Hyprland"; 
+      # Uncommenting it makes it fail to build.
       # inputs.nixpkgs.follows = "nixpkgs"; # Avoid version dismatch with MESA/OpenGL
+    };
+
+    # Yazi plugins
+    nix-yazi-plugins = {
+      url = "github:lordkekz/nix-yazi-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs = {
