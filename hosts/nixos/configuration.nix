@@ -1,40 +1,13 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, lib, ... }:
 
 {
 # You can import other NixOS modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
+    ./system-packages.nix
   ];
 
   nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
@@ -52,6 +25,24 @@
       flake-registry = "";
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
+
+
+      # Cachix, avoid building binaries not available in nixcache.
+      substituters = [
+        "https://hyprland.cachix.org"
+        "https://nix-community.cachix.org"
+      ];
+    # All substituters should be trusted if you want to pull from them
+    trusted-substituters = [
+    "https://cache.nixos.org/"
+    "https://hyprland.cachix.org"
+    "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
+    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+
     };
     # Opinionated: disable channels
     channel.enable = false;
@@ -61,22 +52,7 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  # Cachix, avoid building binaries not available in nixcache.
-  nix.settings = {
-    substituters = [
-    "https://hyprland.cachix.org"
-    "https://nix-community.cachix.org"
-    ];
-    # All substituters should be trusted if you want to pull from them
-    trusted-substituters = [
-    "https://hyprland.cachix.org"
-    "https://nix-community.cachix.org"
-    ];
-    trusted-public-keys = [
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-  };
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -105,7 +81,7 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # System Wide user-settings
   users.users.akame = {
     isNormalUser = true;
     description = "akame";
@@ -115,18 +91,8 @@
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "akame";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # TODO: temporary solution.
-  programs.hyprland.enable = true;
-  environment.systemPackages = with pkgs; [
-    git
-    neovim
-    ranger
-    kitty
-    brave
-  ];
-
+  
   environment.variables.EDITOR = "nvim";
 
   system.stateVersion = "25.05"; # Did you read the comment?

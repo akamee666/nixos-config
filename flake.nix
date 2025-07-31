@@ -9,7 +9,7 @@
     # Hyprland
     hyprland = {  
       url = "github:hyprwm/Hyprland"; 
-      inputs.nixpkgs.follows = "nixpkgs"; # Avoid version dismatch with MESA/OpenGL
+      # inputs.nixpkgs.follows = "nixpkgs"; # Avoid version dismatch with MESA/OpenGL
     };
 
     # Home manager
