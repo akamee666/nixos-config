@@ -25,13 +25,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Command-not-found 
+    # Command-not-found
     # NixOS systems configured with flakes and thus lacking channels usually have a broken command-not-found. The reason is that the backing database programs.sqlite is only available on channels. The problem is that the channel URL can not be determined from the nixpkgs revision alone, as it also contains a build number.
     flake-programs-sqlite = {
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nvim-config = {
+      url = "path:./modules/programs/cli/neovim";
+    };
   };
 
   outputs = {
@@ -59,6 +62,8 @@
     # These are usually stuff you would upstream into home-manager
     # homeManagerModules = import ./modules/home-manager;
 
+
+
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -67,21 +72,22 @@
         modules = [
           # > Our main nixos configuration file <
           ./hosts/nixos/configuration.nix
-	   inputs.flake-programs-sqlite.nixosModules.programs-sqlite
+          # SystemWide imports
+          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
         ];
       };
     };
 
     # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
+    # Available through 'home-manager switch --flake .#your-username@your-hostname'
     homeConfigurations = {
-      # FIXME replace with your username@hostname
       "akame@nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
+
         ];
       };
     };

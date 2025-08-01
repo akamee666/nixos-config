@@ -233,7 +233,7 @@
 		}
 		{
 			on = "d";
-			run = "remove --permantely";
+			run = "remove";
 			desc = "Trash selected files";
 		}
 		{

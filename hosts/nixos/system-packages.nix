@@ -1,12 +1,13 @@
 {inputs, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     git
-    neovim
     yazi
     kitty
     tree
     eza
     fd
+    nvim-pkg # default package added by overlay kickstart.nvim
+
   ];
 
   # This will be pulled by nixpkgs

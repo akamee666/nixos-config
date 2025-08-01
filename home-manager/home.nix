@@ -28,21 +28,37 @@
     };
   };
 
+  # Overlays
+  nixpkgs.overlays = [ inputs.nvim-config.overlays.default ];
+
   home = {
     username = "akame";
     homeDirectory = "/home/akame";
   };
 
-  home.packages = with pkgs; [ 
-    gohufont # font
-    nerd-fonts.gohufont # font but nerdy
-    brave # browser
+  home.packages = with pkgs; [
+    # Fonts
+    gohufont
+    nerd-fonts.gohufont
+
+    # CLI
     alacritty # terminal emulator
     fish # shell
     wl-clipboard # wayland clipboard
     pavucontrol # mixer
     btop # process monitor
-  ];
+    fzf # it's used to find something
+    ripgrep # also used to find things
+    nvim-pkg
+
+    # browser
+    brave
+
+    # Screenshoot
+    swappy
+    grim
+    slurp
+    ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
