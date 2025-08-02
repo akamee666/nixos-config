@@ -1,8 +1,8 @@
-{lib,pkgs,config, ...}: {
+{ lib, pkgs, ...}: {
 	programs.fish = {
 		enable = true;
 		shellAliases = {
-# General
+      # General
 			rl="readlink -f";
 			r="y";
 			ranger="y";
@@ -25,8 +25,7 @@
 			# git
 			gcl="git clone";
 			gst="git status";
-lola="git log --graph --pretty=\"format:%C(auto)%h %d %s %C(green)(%ad) %C(cyan) <%an >\" --abbrev-commit --all --date=relative";
-
+      lola="git log --graph --pretty=\"format:%C(auto)%h %d %s %C(green)(%ad) %C(cyan) <%an >\" --abbrev-commit --all --date=relative";
 		};
 
 		interactiveShellInit = ''
@@ -42,41 +41,40 @@ lola="git log --graph --pretty=\"format:%C(auto)%h %d %s %C(green)(%ad) %C(cyan)
 		'';
 
 		functions = {
+      fish_prompt = {
+        body = ''
+          # This is a simple prompt. It looks like
+          # alfa@nobby /path/to/dir $
+          # with the path shortened and colored
+          # and a "#" instead of a "$" when run as root.
+          set -l symbol ' $ '
+          set -l color $fish_color_cwd
+          if fish_is_root_user
+                  set symbol ' # '
+                  set -q fish_color_cwd_root
+                  and set color $fish_color_cwd_root
+          end
+      
+          echo -n $USER@$hostname
+      
+          set_color $color
+          echo -n (prompt_pwd)
+          set_color normal
+      
+          echo -n $symbol
+        '';
+      };
 
-		fish_prompt = {
-			body = ''
-        # This is a simple prompt. It looks like
-        # alfa@nobby /path/to/dir $
-        # with the path shortened and colored
-        # and a "#" instead of a "$" when run as root.
-        set -l symbol ' $ '
-        set -l color $fish_color_cwd
-        if fish_is_root_user
-                set symbol ' # '
-                set -q fish_color_cwd_root
-                and set color $fish_color_cwd_root
-        end
-    
-        echo -n $USER@$hostname
-    
-        set_color $color
-        echo -n (prompt_pwd)
-        set_color normal
-    
-        echo -n $symbol
-			'';
-		};
-y = {
-body = ''
+      y = {
+        body = ''
           set tmp (${pkgs.coreutils}/bin/mktemp -t "yazi-cwd.XXXXXX")
           ${lib.getExe pkgs.yazi} $argv --cwd-file="$tmp"
           if set cwd (command ${pkgs.coreutils}/bin/cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-              builtin cd -- "$cwd"
-          end
-          ${pkgs.coreutils}/bin/rm -f -- "$tmp"
-        '';
-
-};
-		};
-	};
-       }
+            builtin cd -- "$cwd"
+              end
+              ${pkgs.coreutils}/bin/rm -f -- "$tmp"
+              '';
+      };
+    };
+  };
+}
