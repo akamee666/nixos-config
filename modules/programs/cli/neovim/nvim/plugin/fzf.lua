@@ -15,4 +15,4 @@ vim.keymap.set('n', 'fb', fzf.buffers, { desc = '[f]ind [b]uffer' })
 vim.keymap.set('n', 'fS', fzf.lsp_document_symbols, { desc = '[f]ind document [S]ymbols' })
 vim.keymap.set('n', 'fs', fzf.lsp_workspace_symbols, { desc = '[f]ind workspace [s]ymbols' })
 
-fzf.setup()
+fzf.setup({'fzf-native'})
