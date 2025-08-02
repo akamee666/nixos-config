@@ -1,6 +1,20 @@
 {
   description = "Neovim derivation";
 
+  #   The function receives several key inputs:
+  #
+  # The normalized plugin configuration from neovimUtils.makeNeovimConfig
+  # The generated init.lua content that sets up runtime paths
+  # Wrapper arguments for environment variables and PATH extensions
+  # The Bundling Process
+  # Rather than literally bundling plugins into the binary itself, wrapNeovimUnstable creates a wrapper script that:
+  #
+  # Sets up the environment with proper PATH and environment variables mkNeovim.nix:158-175
+  #
+  # Configures plugin paths through the neovimConfig structure that tells Neovim where to find each plugin in the Nix store mkNeovim.nix:66-71
+  #
+  # Injects the custom init.lua that manages runtime path loading order mkNeovim.nix:122-156
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
