@@ -6,8 +6,7 @@
     tree
     eza
     fd
-    nvim-pkg # default package added by overlay kickstart.nvim
-
+    # nvim-pkg # default package added by overlay kickstart.nvim
   ];
 
   # This will be pulled by nixpkgs

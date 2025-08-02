@@ -38,14 +38,11 @@ with final.pkgs.lib; let
     cmp-nvim-lsp # LSP as completion source | https://github.com/hrsh7th/cmp-nvim-lsp/
     cmp-nvim-lsp-signature-help # https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/
     cmp-cmdline # cmp command line suggestions
-    cmp-cmdline-history # cmp command line history suggestions
 
     # UI
     alpha-nvim
-
-    # telescope and extensions
-    telescope-nvim # https://github.com/nvim-telescope/telescope.nvim/
-    telescope-fzf-native-nvim # https://github.com/nvim-telescope/telescope-fzf-native.nvim
+    
+    # Fuzzy searcher
     fzf-lua
 
     nvim-treesitter-context # nvim-treesitter-context

@@ -2,9 +2,6 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -49,7 +46,8 @@
     btop # process monitor
     fzf # it's used to find something
     ripgrep # also used to find things
-    nvim-pkg
+    nvim-pkg # why not found wtf
+    bat # yay
 
     # browser
     brave
@@ -58,7 +56,7 @@
     swappy
     grim
     slurp
-    ];
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
