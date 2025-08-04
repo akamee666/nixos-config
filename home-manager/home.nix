@@ -50,6 +50,7 @@
     brave # browser
     pavucontrol # mixer
     spotify # Music yay
+    rofi # menu
 
     # Screenshoot
     swappy
@@ -66,5 +67,4 @@
   systemd.user.startServices = "sd-switch";
 
   home.stateVersion = "25.05";
-
 }

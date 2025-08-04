@@ -222,8 +222,7 @@
           "$mainMod SHIFT, F, exec, $browser"
           "$mainMod SHIFT, S, exec, spotify"
 
-          # FIXME: I do not have rofi yet
-          # "$mainMod, D, exec, pkill -x rofi || ${./scripts/rofi.sh} drun" # launch desktop applications
+          "$mainMod, D, exec, rofi -no-config -no-lazy-grab -show drun --theme gruvbox-hard" # launch desktop applications
 
           # Functional keybinds
           ",xf86Sleep, exec, systemctl suspend" # Put computer into sleep mode

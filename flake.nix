@@ -10,11 +10,11 @@
     alacritty-theme = {
       url = "github:alexghr/alacritty-theme.nix";
     };
-    
+
     # Hyprland
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      # Uncommenting it makes it fail to build.
+      # Uncommenting makes it fail to build.
       # inputs.nixpkgs.follows = "nixpkgs"; # Avoid version dismatch with MESA/OpenGL
     };
 
@@ -37,6 +37,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+   # My own neovim overlay
     nvim-config = {
       url = "path:./modules/programs/cli/neovim";
     };

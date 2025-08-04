@@ -1,10 +1,14 @@
-{config, pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.alacritty = let
     font_family = "GohuFont 14 Nerd Font Mono"; # Mono and not Propo because Propo height changes
   in {
     enable = true;
     settings = {
-      general.import = [ pkgs.alacritty-theme.gruvbox_dark];
+      general.import = [pkgs.alacritty-theme.gruvbox_dark];
       terminal.shell = "${pkgs.fish}/bin/fish";
       font = {
         normal = {
