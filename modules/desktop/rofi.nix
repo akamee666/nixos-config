@@ -1,10 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   programs.rofi = {
-    enable = true;
-    extraConfig = {
-      theme = "gruvbox-hard";
-      font = "GohuFont 14 Nerd Font Mono";
-      show-icons = true;
-    };
+    enable = true; 
+    font = "GohuFont 14 Nerd Font Mono";
+    theme = "${pkgs.rofi}/share/rofi/themes/gruvbox-dark-hard.rasi";
   };
 }

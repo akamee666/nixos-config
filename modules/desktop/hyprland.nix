@@ -222,7 +222,7 @@
           "$mainMod SHIFT, F, exec, $browser"
           "$mainMod SHIFT, S, exec, spotify"
 
-          "$mainMod, D, exec, rofi -no-config -no-lazy-grab -show drun --theme gruvbox-hard" # launch desktop applications
+          "$mainMod, D, exec, rofi -no-lazy-grab -show drun" # launch desktop applications
 
           # Functional keybinds
           ",xf86Sleep, exec, systemctl suspend" # Put computer into sleep mode
