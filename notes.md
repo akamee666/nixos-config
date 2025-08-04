@@ -11,3 +11,7 @@ home-manager --flake .#your-username@your-hostname switch
 Update System configs:
 
 sudo nixos-rebuild switch
+
+# TODO
+
+add blink instead of cmp maybe

@@ -1,9 +1,11 @@
-{inputs, outputs, lib, config, pkgs, ... }: {
-
+{ 
+  pkgs,
+  ... 
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [
-# inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
     ];
     systemd = {
       enable = true;
@@ -12,16 +14,13 @@
 
     settings = {
       "$mainMod" = "SUPER";
-      # FIXME: Change to alacritty
-      # "$term" = "${getExe pkgs.${terminal}}";
       "$term" = "alacritty";
       "$editor" = "nvim";
-      # FIXME: Use ${terminalFileManager}
       "$fileManager" = "$term --class \"terminalFileManager\" -e yazi";
       "$browser" = "brave";
 
       env = [
-        "XDG_CURRENT_DESKTOP,Hyprland"
+          "XDG_CURRENT_DESKTOP,Hyprland"
           "XDG_SESSION_DESKTOP,Hyprland"
           "XDG_SESSION_TYPE,wayland"
           "GDK_BACKEND,wayland,x11,*"
@@ -140,7 +139,7 @@
         swallow_regex = "^(Alacritty|kitty)$";
         enable_swallow = true;
         vfr = true; # always keep on
-          vrr = 1; # enable variable refresh rate (0=off, 1=on, 2=fullscreen only)
+        vrr = 1; # enable variable refresh rate (0=off, 1=on, 2=fullscreen only)
       };
       xwayland.force_zero_scaling = false;
       gestures = {
@@ -157,21 +156,21 @@
         mfact = 0.5;
       };
       windowrule = [
-# Move applications to different workspaces
-#"noanim, class:^(Rofi)$
-# "tile,title:(.*)(Godot)(.*)$"
-# "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
-# "workspace 2, class:^(code|VSCodium|code-url-handler|codium-url-handler)$"
-# "workspace 3, class:^(krita)$"
-# "workspace 3, title:(.*)(Godot)(.*)$"
-# "workspace 3, title:(GNU Image Manipulation Program)(.*)$"
-# "workspace 3, class:^(factorio)$"
-# "workspace 3, class:^(steam)$"
-# "workspace 5, class:^(firefox|floorp|zen)$"
-# "workspace 6, class:^(Spotify)$"
-# "workspace 6, title:(.*)(Spotify)(.*)$"
+          # Move applications to different workspaces
+          #"noanim, class:^(Rofi)$
+          # "tile,title:(.*)(Godot)(.*)$"
+          # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
+          # "workspace 2, class:^(code|VSCodium|code-url-handler|codium-url-handler)$"
+          # "workspace 3, class:^(krita)$"
+          # "workspace 3, title:(.*)(Godot)(.*)$"
+          # "workspace 3, title:(GNU Image Manipulation Program)(.*)$"
+          # "workspace 3, class:^(factorio)$"
+          # "workspace 3, class:^(steam)$"
+          # "workspace 5, class:^(firefox|floorp|zen)$"
+          # "workspace 6, class:^(Spotify)$"
+          # "workspace 6, title:(.*)(Spotify)(.*)$"
 
-        "float,class:^(qt5ct)$"
+          "float,class:^(qt5ct)$"
           "float,class:^(nwg-look)$"
           "float,class:^(org.kde.ark)$"
           "float,class:^(Signal)$" #Signal-Gtk
@@ -189,46 +188,46 @@
           "float,class:^(org.kde.polkit-kde-authentication-agent-1)$"
           ];
       binde = [
-# Functional keybinds
-        ",XF86MonBrightnessDown,exec,brightnessctl set 2%-"
+          # Functional keybinds
+          ",XF86MonBrightnessDown,exec,brightnessctl set 2%-"
           ",XF86MonBrightnessUp,exec,brightnessctl set +2%"
           ",XF86AudioLowerVolume,exec,pamixer -d 2"
           ",XF86AudioRaiseVolume,exec,pamixer -i 2"
       ];
       bind = [
-# Keybinds help menu
-# FIXME: add scripts
-# "$mainMod, question, exec, ${./scripts/keybinds.sh}"
+          # Keybinds help menu
+          # FIXME: add scripts
+          # "$mainMod, question, exec, ${./scripts/keybinds.sh}"
 
-# Night Mode (lower value means warmer temp)
-# FIXME: might be useful
-# "$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
-# "$mainMod, F10, exec, pkill hyprsunset"
+          # Night Mode (lower value means warmer temp)
+          # FIXME: might be useful
+          # "$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
+          # "$mainMod, F10, exec, pkill hyprsunset"
 
-# Window/Session actions
-        "$mainMod, Q, killactive" # killactive, kill the window on focus
+          # Window/Session actions
+          "$mainMod, Q, killactive" # killactive, kill the window on focus
           "$mainMod, delete, exit" # kill hyperland session
           "$mainMod, SPACE, togglefloating" # toggle the window on focus to float
           "$mainMod SHIFT, G, togglegroup" # toggle the window on focus to float
           "$mainMod, F, fullscreen" # toggle the window on focus to fullscreen
 
-# Applications/Programs
+          # Applications/Programs
           "$mainMod, Return, exec, $term"
           "$mainMod, E, exec, $fileManager"
           "$mainMod SHIFT, F, exec, $browser"
           "$mainMod SHIFT, S, exec, spotify"
 
-# FIXME: I do not have rofi yet
-# "$mainMod, D, exec, pkill -x rofi || ${./scripts/rofi.sh} drun" # launch desktop applications
+          # FIXME: I do not have rofi yet
+          # "$mainMod, D, exec, pkill -x rofi || ${./scripts/rofi.sh} drun" # launch desktop applications
 
-# Screenshot/Screencapture
-# FIXME: hyprshot
-# "$mainMod, P, exec, ${./scripts/screenshot.sh} s" # drag to snip an area / click on a window to print it
-# "$mainMod CTRL, P, exec, ${./scripts/screenshot.sh} sf" # frozen screen, drag to snip an area / click on a window to print it
-# "$mainMod, print, exec, ${./scripts/screenshot.sh} m" # print focused monitor
-# "$mainMod ALT, P, exec, ${./scripts/screenshot.sh} p" # print all monitor outputs
+          # Screenshot/Screencapture
+          # FIXME: hyprshot
+          # "$mainMod, P, exec, ${./scripts/screenshot.sh} s" # drag to snip an area / click on a window to print it
+          # "$mainMod CTRL, P, exec, ${./scripts/screenshot.sh} sf" # frozen screen, drag to snip an area / click on a window to print it
+          # "$mainMod, print, exec, ${./scripts/screenshot.sh} m" # print focused monitor
+          # "$mainMod ALT, P, exec, ${./scripts/screenshot.sh} p" # print all monitor outputs
 
-# Functional keybinds
+          # Functional keybinds
           ",xf86Sleep, exec, systemctl suspend" # Put computer into sleep mode
           ",XF86AudioMicMute,exec,pamixer --default-source -t" # mute mic
           ",XF86AudioMute,exec,pamixer -t" # mute audio
@@ -241,26 +240,26 @@
           # "$mainMod SHIFT, S, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" "$(xdg-user-dir PICTURES)/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')"
           "$mainMod, S, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy --type image/png"
 
-# to switch between windows in a floating workspace
+          # to switch between windows in a floating workspace
           "ALT, Tab, cyclenext"
           "ALT, Tab, bringactivetotop"
 
-# move to the first empty workspace instantly with mainMod + CTRL + [↓]
+          # move to the first empty workspace instantly with mainMod + CTRL + [↓]
           "$mainMod CTRL, down, workspace, empty"
 
-# Move focus with mainMod + arrow keys
+          # Move focus with mainMod + arrow keys
           "$mainMod, left, movefocus, l"
           "$mainMod, right, movefocus, r"
           "$mainMod, up, movefocus, u"
           "$mainMod, down, movefocus, d"
 
-# Move focus with mainMod + HJKL keys
+          # Move focus with mainMod + HJKL keys
           "$mainMod, h, movefocus, l"
           "$mainMod, l, movefocus, r"
           "$mainMod, k, movefocus, u"
           "$mainMod, j, movefocus, d"
 
-# Scroll through existing workspaces with mainMod + scroll
+          # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
 
@@ -277,20 +276,20 @@
                   ])
                 10));
       bindm = [
-# Move/Resize windows with mainMod + LMB/RMB and dragging
+        # Move/Resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
-          "$mainMod, mouse:273, resizewindow"
+        "$mainMod, mouse:273, resizewindow"
       ];
     };
     extraConfig = ''
       binds {
         workspace_back_and_forth = 1
-#allow_workspace_cycles=1
-#pass_mouse_when_bound=0
+        #allow_workspace_cycles=1
+        #pass_mouse_when_bound=0
       }
 
-# Easily plug in any monitor
-    monitor=,preferred,auto,1
+      # Easily plug in any monitor
+      monitor=,preferred,auto,1
       '';
   };
-                                            }
+}

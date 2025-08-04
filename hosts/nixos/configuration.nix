@@ -32,6 +32,7 @@
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
       ];
+
     # All substituters should be trusted if you want to pull from them
     trusted-substituters = [
     "https://cache.nixos.org/"
