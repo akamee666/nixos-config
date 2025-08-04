@@ -1,4 +1,8 @@
-{inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     git
     yazi
@@ -19,7 +23,7 @@
   # programs.hyprland.enable = true;
   # This below, instead, will be pulled by the inputs variable set in flake.nix and imported bc of specialArgs = {inherint inputs };
   programs.hyprland = {
-   enable = true;
+    enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };

@@ -1,8 +1,5 @@
 # This overlay, when applied to nixpkgs, adds the final neovim derivation to nixpkgs.
-{
-  inputs,
-  ...
-}: final: prev:
+{inputs, ...}: final: prev:
 with final.pkgs.lib; let
   pkgs = final;
 
@@ -19,8 +16,8 @@ with final.pkgs.lib; let
 
   # This is the helper function that builds the Neovim derivation.
   mkNeovim = pkgs.callPackage ./mkNeovim.nix {
-      inherit (pkgs-locked) wrapNeovimUnstable neovimUtils;
-    };
+    inherit (pkgs-locked) wrapNeovimUnstable neovimUtils;
+  };
 
   # A plugin can either be a package or an attrset, such as
   # { plugin = <plugin>; # the package, e.g. pkgs.vimPlugins.nvim-cmp
@@ -32,10 +29,10 @@ with final.pkgs.lib; let
   # }
   all-plugins = with pkgs.vimPlugins; [
     nvim-treesitter.withAllGrammars # Treesitter
-    luasnip # snippets 
-    nvim-cmp # 
-    cmp_luasnip # snippets autocompletion extension for nvim-cmp 
-    cmp-nvim-lsp # LSP as completion source 
+    luasnip # snippets
+    nvim-cmp #
+    cmp_luasnip # snippets autocompletion extension for nvim-cmp
+    cmp-nvim-lsp # LSP as completion source
     cmp-nvim-lsp-signature-help # i don't know
     cmp-cmdline # cmp command line suggestions
 
@@ -49,7 +46,6 @@ with final.pkgs.lib; let
 
     nvim-unception # Prevent nested neovim sessions | nvim-unception
 
-
     # libraries that other plugins depend on
     nvim-navic
     sqlite-lua
@@ -58,13 +54,13 @@ with final.pkgs.lib; let
     vim-repeat
 
     # Plugins from flake.nix
-    (mkNvimPlugin inputs.multicursor-nvim "multicursor.nvim") 
+    (mkNvimPlugin inputs.multicursor-nvim "multicursor.nvim")
   ];
 
   extraPackages = with pkgs; [
     # language servers, etc.
     lua-language-server # Lua
-    nil # Nix 
+    nil # Nix
     rust-analyzer # Rust
   ];
 in {

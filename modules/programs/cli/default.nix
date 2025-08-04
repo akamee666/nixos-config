@@ -1,6 +1,4 @@
-{
-  ...
-}: {
+{...}: {
   imports = [
     ./yazi.nix # Terminal file manager
     ./alacritty.nix # Terminal emulator, font and more

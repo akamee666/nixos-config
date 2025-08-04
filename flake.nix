@@ -7,8 +7,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Hyprland
-    hyprland = {  
-      url = "github:hyprwm/Hyprland"; 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
       # Uncommenting it makes it fail to build.
       # inputs.nixpkgs.follows = "nixpkgs"; # Avoid version dismatch with MESA/OpenGL
     };
@@ -61,8 +61,6 @@
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
     # homeManagerModules = import ./modules/home-manager;
-
-
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'

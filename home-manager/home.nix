@@ -17,7 +17,7 @@
   };
 
   # Overlays
-  nixpkgs.overlays = [ inputs.nvim-config.overlays.default ];
+  nixpkgs.overlays = [inputs.nvim-config.overlays.default];
 
   home = {
     username = "akame";
@@ -37,9 +37,10 @@
     fzf # fuzzy finder to find things
     ripgrep # finder to search for things
     nvim-pkg # my neovim cfg overlay
-    bat # Replacing cat 
+    bat # Replacing cat
+    alejandra # nixformatter
 
-    # Utils 
+    # Utils
     brave # browser
     pavucontrol # mixer
     spotify # Music yay
