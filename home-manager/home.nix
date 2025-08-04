@@ -3,11 +3,14 @@
 {
   inputs,
   pkgs,
+  alacritty-theme,
   ...
 }: {
   imports = [
     ../modules/desktop
     ../modules/programs/cli
+
+    # Flakes
   ];
 
   nixpkgs = {
@@ -17,7 +20,10 @@
   };
 
   # Overlays
-  nixpkgs.overlays = [inputs.nvim-config.overlays.default];
+  nixpkgs.overlays = [
+    inputs.nvim-config.overlays.default
+    inputs.alacritty-theme.overlays.default
+  ];
 
   home = {
     username = "akame";
@@ -60,4 +66,5 @@
   systemd.user.startServices = "sd-switch";
 
   home.stateVersion = "25.05";
+
 }

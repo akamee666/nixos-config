@@ -217,6 +217,7 @@
 
           # Applications/Programs
           "$mainMod, Return, exec, $term"
+          "$mainMod SHIFT, Return, exec, [float;] $term"
           "$mainMod, E, exec, $fileManager"
           "$mainMod SHIFT, F, exec, $browser"
           "$mainMod SHIFT, S, exec, spotify"

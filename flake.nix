@@ -6,6 +6,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # Alacritty themes
+    alacritty-theme = {
+      url = "github:alexghr/alacritty-theme.nix";
+    };
+    
     # Hyprland
     hyprland = {
       url = "github:hyprwm/Hyprland";
@@ -41,6 +46,7 @@
     self,
     nixpkgs,
     home-manager,
+    alacritty-theme,
     ...
   } @ inputs: let
     inherit (self) outputs;
