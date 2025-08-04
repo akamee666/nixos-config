@@ -56,8 +56,23 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = false;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+      grub = {
+        enable = true;
+        # Find other boot entries (dual-boot)
+        useOSProber = true;
+        # Modern BIOS
+        efiSupport = true;
+        # Tells grub-install to place files in the EFI System partition, not to write in the raw boot sector
+        # of the drive. This is the modern way to do it in UEFI Systems.
+        device = "nodev";
+      };
+    };
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
 
