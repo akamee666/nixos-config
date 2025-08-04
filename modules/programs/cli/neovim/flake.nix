@@ -1,7 +1,7 @@
 {
   description = "Neovim derivation";
 
-  #   The function receives several key inputs:
+  # The function receives several key inputs:
   #
   # The normalized plugin configuration from neovimUtils.makeNeovimConfig
   # The generated init.lua content that sets up runtime paths
@@ -20,12 +20,10 @@
     flake-utils.url = "github:numtide/flake-utils";
     gen-luarc.url = "github:mrcjkb/nix-gen-luarc-json";
 
-    # Add bleeding-edge plugins here.
-    # They can be updated with `nix flake update` (make sure to commit the generated flake.lock)
-    # wf-nvim = {
-    #   url = "github:Cassin01/wf.nvim";
-    #   flake = false;
-    # };
+    multicursor-nvim = {
+      url = "github:jake-stewart/multicursor.nvim";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {

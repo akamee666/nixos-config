@@ -3,20 +3,12 @@ vim.loader.enable()
 local cmd = vim.cmd
 local opt = vim.o
 
--- <leader> key. Defaults to `\`. Some people prefer space.
--- The default leader is '\'. Some people prefer <space>. Uncomment this if you do, too.
--- vim.g.mapleader = ' '
--- vim.g.maplocalleader = ' '
-
--- See :h <option> to see what the options do
-
--- Search down into subfolders
 opt.path = vim.o.path .. '**'
 
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
-opt.lazyredraw = true
+opt.lazyredraw = false -- Redraw screen when macros
 opt.showmatch = true -- Highlight matching parentheses, etc
 opt.incsearch = true
 opt.hlsearch = true
@@ -29,9 +21,9 @@ opt.foldenable = true
 opt.history = 2000
 opt.nrformats = 'bin,hex' -- 'octal'
 opt.undofile = true
-opt.splitright = true
-opt.splitbelow = true
-opt.cmdheight = 0
+-- opt.splitright = true
+-- opt.splitbelow = true
+-- opt.cmdheight = 0 -- Does not show command line
 
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.colorcolumn = '100'

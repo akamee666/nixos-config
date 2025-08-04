@@ -1,5 +1,8 @@
 # This overlay, when applied to nixpkgs, adds the final neovim derivation to nixpkgs.
-{inputs}: final: prev:
+{
+  inputs,
+  ...
+}: final: prev:
 with final.pkgs.lib; let
   pkgs = final;
 
@@ -28,26 +31,24 @@ with final.pkgs.lib; let
   #   ...
   # }
   all-plugins = with pkgs.vimPlugins; [
-    # plugins from nixpkgs go in here.
     nvim-treesitter.withAllGrammars # Treesitter
-    luasnip # snippets | https://github.com/l3mon4d3/luasnip/
-    nvim-cmp # https://github.com/hrsh7th/nvim-cmp
-    cmp_luasnip # snippets autocompletion extension for nvim-cmp | https://github.com/saadparwaiz1/cmp_luasnip/
-    cmp-nvim-lsp # LSP as completion source | https://github.com/hrsh7th/cmp-nvim-lsp/
-    cmp-nvim-lsp-signature-help # https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/
+    luasnip # snippets 
+    nvim-cmp # 
+    cmp_luasnip # snippets autocompletion extension for nvim-cmp 
+    cmp-nvim-lsp # LSP as completion source 
+    cmp-nvim-lsp-signature-help # i don't know
     cmp-cmdline # cmp command line suggestions
 
     # Colorschemes
     gruvbox-nvim
 
-    # UI
+    # Utils
     alpha-nvim
-    
-    # Fuzzy searcher
     fzf-lua
+    which-key-nvim
 
-    nvim-treesitter-context # nvim-treesitter-context
     nvim-unception # Prevent nested neovim sessions | nvim-unception
+
 
     # libraries that other plugins depend on
     nvim-navic
@@ -56,10 +57,8 @@ with final.pkgs.lib; let
     nvim-web-devicons
     vim-repeat
 
-    # bleeding-edge plugins from flake inputs
-    # (mkNvimPlugin inputs.wf-nvim "wf.nvim") # (example) keymap hints | https://github.com/Cassin01/wf.nvim
-    # ^ bleeding-edge plugins from flake inputs
-    which-key-nvim
+    # Plugins from flake.nix
+    (mkNvimPlugin inputs.multicursor-nvim "multicursor.nvim") 
   ];
 
   extraPackages = with pkgs; [

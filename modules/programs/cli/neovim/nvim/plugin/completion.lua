@@ -36,14 +36,14 @@ cmp.setup {
     end,
   },
   mapping = {
-    ['<C-b>'] = cmp.mapping(function(_)
+    ['<C-B>'] = cmp.mapping(function(_)
       if cmp.visible() then
         cmp.scroll_docs(-4)
       else
         complete_with_source('buffer')
       end
     end, { 'i', 'c', 's' }),
-    ['<C-n>'] = cmp.mapping(function(_)
+    ['<C-b>'] = cmp.mapping(function(_)
       if cmp.visible() then
         cmp.scroll_docs(4)
       else
@@ -64,8 +64,8 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 'c', 's' }),
-    -- Cycle backwards with Ctrl+p
-    ['<C-p>'] = cmp.mapping(function(fallback)
+    -- Cycle backwards with Ctrl+Shift+F
+    ['<C-F>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
