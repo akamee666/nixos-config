@@ -1,5 +1,6 @@
 # This overlay, when applied to nixpkgs, adds the final neovim derivation to nixpkgs.
-{inputs, ...}: final: prev: with final.pkgs.lib; let
+{inputs, ...}: final: prev:
+with final.pkgs.lib; let
   pkgs = final;
 
   # Use this to create a plugin from a flake input
@@ -43,7 +44,7 @@
     fzf-lua
     which-key-nvim
 
-    nvim-unception 
+    nvim-unception
 
     # Dependencies
     nvim-navic

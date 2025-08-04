@@ -30,6 +30,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+    };
+
     # Command-not-found
     # NixOS systems configured with flakes and thus lacking channels usually have a broken command-not-found. The reason is that the backing database programs.sqlite is only available on channels. The problem is that the channel URL can not be determined from the nixpkgs revision alone, as it also contains a build number.
     flake-programs-sqlite = {
@@ -37,7 +43,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-   # My own neovim overlay
+    # My own neovim overlay
     nvim-config = {
       url = "path:./modules/programs/cli/neovim";
     };

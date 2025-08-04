@@ -3,14 +3,11 @@
 {
   inputs,
   pkgs,
-  alacritty-theme,
   ...
 }: {
   imports = [
     ../modules/desktop
     ../modules/programs/cli
-
-    # Flakes
   ];
 
   nixpkgs = {
@@ -45,6 +42,7 @@
     nvim-pkg # my neovim cfg overlay
     bat # Replacing cat
     alejandra # nixformatter
+    killall
 
     # Utils
     brave # browser
@@ -58,6 +56,8 @@
     slurp
 
     # Desktop
+    hyprpaper
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   ];
 
   # Enable home-manager

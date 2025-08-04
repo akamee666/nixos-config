@@ -1,9 +1,8 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  walls = ../../wallpapers;
+in {
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [
-      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
-    ];
     systemd = {
       enable = true;
       variables = ["--all"];
@@ -11,6 +10,7 @@
 
     settings = {
       env = [
+        "HYPRCURSOR_THEME, rose-pine-hyprcursor"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
@@ -30,13 +30,8 @@
         "NIXPKGS_ALLOW_UNFREE,1"
       ];
 
-      "$mainMod" = "SUPER";
-      "$term" = "alacritty";
-      "$editor" = "nvim";
-      "$fileManager" = "$term --class \"terminalFileManager\" -e yazi";
-      "$browser" = "brave";
-
       exec-once = [
+        "${pkgs.hyprpaper}/bin/hyprpaper"
         #"[workspace 1 silent] ${terminal}"
         #"[workspace 5 silent] ${browser}"
         #"[workspace 6 silent] spotify"
@@ -59,12 +54,11 @@
       input = {
         kb_layout = "us";
         kb_variant = "";
-        kb_options = caps:swapescape;
+        kb_options = "caps:swapescape";
 
         follow_mouse = 1;
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-        # force_no_accel = true;
       };
       general = {
         gaps_in = 4;
@@ -79,7 +73,6 @@
 
       decoration = {
         shadow.enabled = false;
-        rounding = 10;
         dim_special = 0.3;
       };
 
@@ -197,6 +190,12 @@
         ",XF86AudioRaiseVolume,exec,pamixer -i 2"
       ];
 
+      "$mainMod" = "SUPER";
+      "$term" = "alacritty";
+      "$editor" = "nvim";
+      "$fileManager" = "$term --class \"terminalFileManager\" -e yazi";
+      "$browser" = "brave";
+
       bind =
         [
           # Keybinds help menu
@@ -289,7 +288,22 @@
       }
 
       # Easily plug in any monitor
-      monitor=,preferred,auto,1
+        monitor=,preferred,auto,1
+    '';
+  };
+
+  # Hyprpaper
+  xdg.configFile."hypr/hyprpaper.conf" = {
+    text = ''
+      preload = ${walls}/light_anm07.png
+      preload = ${walls}/dark_anm08.png
+      preload = ${walls}/light_anm04.jpg
+      preload = ${walls}/robot_light_girl.png
+      preload = ${walls}/lucy-red-background.png
+      wallpaper = , ${walls}/light_anm07.png
+      # wallpaper = , ${walls}/lucy-red-background.png
+      # wallpaper = , ${walls}/robot_light_girl.png
+      # wallpaper = , ${walls}/light_anm04.jpg
     '';
   };
 }
