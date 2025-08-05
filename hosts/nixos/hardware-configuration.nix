@@ -10,7 +10,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
@@ -19,7 +18,21 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/663eabbc-eef2-43db-8e7f-cae986188d9d";
     fsType = "btrfs";
-    options = ["subvol=@"];
+    options = ["subvol=@" "compress=zstd:2" "noatime"]; 
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/663eabbc-eef2-43db-8e7f-cae986188d9d";
+    fsType = "btrfs";
+    options = ["subvol=@home" "compress=zstd:2" "noatime"];
+  };
+
+  fileSystems."/nix" = {
+    neededForBoot = true;
+    device = "/dev/disk/by-uuid/663eabbc-eef2-43db-8e7f-cae986188d9d";
+    fsType = "btrfs";
+    # noatime is used for perfomance to avoid writing metadata everytime.
+    options = ["subvol=@nix" "compress=zstd:2" "noatime"];
   };
 
   fileSystems."/boot" = {
@@ -28,11 +41,7 @@
     options = ["fmask=0077" "dmask=0077"];
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/c3e9e259-721e-45d7-a1e7-5e3fbbd61a2a";
-    fsType = "btrfs";
-  };
-
+  
   swapDevices = [];
 
   networking.useDHCP = lib.mkDefault true;
