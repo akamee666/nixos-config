@@ -52,6 +52,7 @@
     pavucontrol # mixer
     playerctl # mixer ?
     spotify # Music yay
+    duf
 
     # Screenshoot
     swappy

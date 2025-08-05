@@ -3,7 +3,6 @@
   # https://github.com/lordkekz/nix-yazi-plugins
   imports = [(inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default)];
 
-  # TODO: ORGANIZE
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
@@ -22,9 +21,6 @@
         git = {
           enable = true;
         };
-        copy-file-contents = {
-          enable = true;
-        };
       };
     };
 
@@ -34,13 +30,6 @@
         on = "l";
         run = "plugin --sync smart-enter";
         desc = "Enter or open (smart enter)";
-      }
-
-      # Copy File Contents (common binding, you can choose another)
-      {
-        on = "yc";
-        run = "plugin --sync copy-file-contents";
-        desc = "Copy file contents";
       }
     ];
 
