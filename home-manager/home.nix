@@ -45,14 +45,13 @@
     bat # Replacing cat
     alejandra # nixformatter
     killall # utils (this shouldn't be here)
-    # ueberzugpp # Show images in terminal
+    ueberzugpp # Show images in terminal
 
     # Utils
     brave # browser
     pavucontrol # mixer
-    playerctl
+    playerctl # mixer ?
     spotify # Music yay
-    rofi # menu
 
     # Screenshoot
     swappy
@@ -64,6 +63,7 @@
     hyprpicker # color picker
     hyprsunset # night filter
     waybar # customizable wayland bar
+    rofi # menu
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default # cursor
   ];
 

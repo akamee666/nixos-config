@@ -1,4 +1,8 @@
-{pkgs, lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   walls = ../../wallpapers;
 in {
   wayland.windowManager.hyprland = {
@@ -109,8 +113,10 @@ in {
       misc = {
         disable_hyprland_logo = true;
         mouse_move_focuses_monitor = true;
-        swallow_regex = "^(Alacritty|kitty)$";
-        enable_swallow = true;
+        # swallow_regex = "^(Alacritty)$";
+        # should be used in terminals so don't swallow it plz
+        # swallow_exception_regex = "class:^ueberzugpp_";
+        # enable_swallow = true;
         vfr = true; # always keep on
         vrr = 1; # enable variable refresh rate (0=off, 1=on, 2=fullscreen only)
       };
@@ -138,9 +144,10 @@ in {
         "suppressevent maximize, class: *"
         "workspace 0, class:^(Spotify)$"
         "workspace 0, title:(.*)(Spotify)(.*)$"
-        ];
+      ];
 
-      binde = [ # Functional keybinds
+      binde = [
+        # Functional keybinds
         ",XF86MonBrightnessDown,exec,brightnessctl set 2%-"
         ",XF86MonBrightnessUp,exec,brightnessctl set +2%"
         ",XF86AudioLowerVolume,exec,pamixer -d 2"
@@ -162,7 +169,7 @@ in {
           # Window/Session actions
           "$mainMod, Q, killactive" # killactive, kill the window on focus
           "$mainMod, delete, exit" # kill hyperland session
-          "$mainMod, SPACE, togglefloating" # toggle the window on focus to float
+          "$mainMod SHIFT, SPACE, togglefloating" # toggle the window on focus to float
           "$mainMod SHIFT, G, togglegroup" # toggle the window on focus to float
           "$mainMod, T, togglesplit" # Toggle split
           "$mainMod, F, fullscreen" # toggle the window on focus to fullscreen
@@ -172,14 +179,12 @@ in {
           "$mainMod SHIFT, Return, exec, [float;] $term"
           "$mainMod, E, exec, $fileManager"
           "$mainMod SHIFT, F, exec, $browser"
-          "$mainMod SHIFT, S, exec, spotify"
           "$mainMod, D, exec, rofi -no-lazy-grab -show drun" # launch desktop applications
 
           # Resize mode
           "$mainMod, R, submap, resize"
           "$mainMod, a, togglespecialworkspace"
           "$mainMod SHIFT, a, movetoworkspace, special"
-
 
           # Functional keybinds
           ",xf86Sleep, exec, systemctl suspend" # Put computer into sleep mode
@@ -192,9 +197,10 @@ in {
 
           # Utils
           "$mainMod, S, exec, ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${lib.getExe' pkgs.wl-clipboard "wl-copy"} --type image/png"
-          "$mainMod, C, exec, ${lib.getExe pkgs.hyprpicker} | wl-copy"
+          "$mainMod SHIFT, S, exec, ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" \"/home/akame/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png\" && hyprctl notify 2 5000 \"rgb(a6e3a1)\" \"Screenshot Saved\""
+          "$mainMod, C, exec, ${lib.getExe pkgs.hyprpicker} | ${lib.getExe' pkgs.wl-clipboard "wl-copy"}"
 
-          # Alt tab with last 
+          # Alt tab with last
           "ALT, Tab, focuscurrentorlast"
 
           # Change focus to floating window
@@ -215,6 +221,18 @@ in {
           "$mainMod, l, movefocus, r"
           "$mainMod, k, movefocus, u"
           "$mainMod, j, movefocus, d"
+
+          # Move window with mainMod + arrow keys
+          "$mainMod SHIFT, left, movewindow, l"
+          "$mainMod SHIFT, right, movewindow, r"
+          "$mainMod SHIFT, up, movewindow, u"
+          "$mainMod SHIFT, down, movewindow, d"
+
+          # Move focus with mainMod + HJKL keys
+          "$mainMod SHIFT, h, movewindow, l"
+          "$mainMod SHIFT, l, movewindow, r"
+          "$mainMod SHIFT, k, movewindow, u"
+          "$mainMod SHIFT, j, movewindow, d"
 
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
