@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{pkgs, lib, ...}: let
   walls = ../../wallpapers;
 in {
   wayland.windowManager.hyprland = {
@@ -31,24 +31,10 @@ in {
       ];
 
       exec-once = [
-        "${pkgs.hyprpaper}/bin/hyprpaper"
-        #"[workspace 1 silent] ${terminal}"
-        #"[workspace 5 silent] ${browser}"
-        #"[workspace 6 silent] spotify"
-        #"[workspace special silent] ${browser} --private-window"
-        #"[workspace special silent] ${terminal}"
-
-        # "waybar"
-        # "swaync"
-        # "nm-applet --indicator"
-        # "wl-clipboard-history -t"
-        # "${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store" # clipboard store text data
-        # "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store" # clipboard store image data
-        # "rm '$XDG_CACHE_HOME/cliphist/db'" # Clear clipboard
-        # "${./scripts/batterynotify.sh}" # battery notification
-        # # "${./scripts/autowaybar.sh}" # uncomment packages at the top
-        # "polkit-agent-helper-1"
-        # "pamixer --set-volume 50"
+        "${lib.getExe pkgs.hyprpaper}"
+        "waybar"
+        "[workspace 5 silent] brave"
+        "[workspace 0 silent] spotify"
       ];
 
       input = {
@@ -68,7 +54,6 @@ in {
         "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
         resize_on_border = true;
         layout = "dwindle"; # dwindle or master
-        # allow_tearing = true; # Allow tearing for games (use immediate window rules for specific games or all titles)
       };
 
       decoration = {
@@ -91,7 +76,6 @@ in {
         "ignorealpha 0.7, swaync-control-center"
       ];
 
-      # FIXME: Should i keep it?
       animations = {
         enabled = true;
         bezier = [
@@ -151,39 +135,12 @@ in {
 
       windowrule = [
         # Move applications to different workspaces
-        #"noanim, class:^(Rofi)$
-        # "tile,title:(.*)(Godot)(.*)$"
-        # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
-        # "workspace 2, class:^(code|VSCodium|code-url-handler|codium-url-handler)$"
-        # "workspace 3, class:^(krita)$"
-        # "workspace 3, title:(.*)(Godot)(.*)$"
-        # "workspace 3, title:(GNU Image Manipulation Program)(.*)$"
-        # "workspace 3, class:^(factorio)$"
-        # "workspace 3, class:^(steam)$"
-        # "workspace 5, class:^(firefox|floorp|zen)$"
-        # "workspace 6, class:^(Spotify)$"
-        # "workspace 6, title:(.*)(Spotify)(.*)$"
+        "suppressevent maximize, class: *"
+        "workspace 0, class:^(Spotify)$"
+        "workspace 0, title:(.*)(Spotify)(.*)$"
+        ];
 
-        "float,class:^(qt5ct)$"
-        "float,class:^(nwg-look)$"
-        "float,class:^(org.kde.ark)$"
-        "float,class:^(Signal)$" #Signal-Gtk
-        "float,class:^(com.github.rafostar.Clapper)$" #Clapper-Gtk
-        "float,class:^(app.drey.Warp)$" #Warp-Gtk
-        "float,class:^(net.davidotek.pupgui2)$" #ProtonUp-Qt
-        "float,class:^(eog)$" #Imageviewer-Gtk
-        "float,class:^(io.gitlab.theevilskeleton.Upscaler)$" #Upscaler-Gtk
-        "float,class:^(yad)$"
-        "float,class:^(pavucontrol)$"
-        "float,class:^(blueman-manager)$"
-        "float,class:^(.blueman-manager-wrapped)$"
-        "float,class:^(nm-applet)$"
-        "float,class:^(nm-connection-editor)$"
-        "float,class:^(org.kde.polkit-kde-authentication-agent-1)$"
-      ];
-
-      binde = [
-        # Functional keybinds
+      binde = [ # Functional keybinds
         ",XF86MonBrightnessDown,exec,brightnessctl set 2%-"
         ",XF86MonBrightnessUp,exec,brightnessctl set +2%"
         ",XF86AudioLowerVolume,exec,pamixer -d 2"
@@ -198,20 +155,16 @@ in {
 
       bind =
         [
-          # Keybinds help menu
-          # FIXME: add scripts
-          # "$mainMod, question, exec, ${./scripts/keybinds.sh}"
-
           # Night Mode (lower value means warmer temp)
-          # FIXME: might be useful
-          # "$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
-          # "$mainMod, F10, exec, pkill hyprsunset"
+          "$mainMod, F9, exec, ${lib.getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
+          "$mainMod, F10, exec, pkill hyprsunset"
 
           # Window/Session actions
           "$mainMod, Q, killactive" # killactive, kill the window on focus
           "$mainMod, delete, exit" # kill hyperland session
           "$mainMod, SPACE, togglefloating" # toggle the window on focus to float
           "$mainMod SHIFT, G, togglegroup" # toggle the window on focus to float
+          "$mainMod, T, togglesplit" # Toggle split
           "$mainMod, F, fullscreen" # toggle the window on focus to fullscreen
 
           # Applications/Programs
@@ -238,12 +191,15 @@ in {
           ",xf86AudioPrev,exec,playerctl previous" # go to previous media
 
           # Utils
-          "$mainMod, S, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy --type image/png"
-          "$mainMod, C, exec, ${pkgs.hyprpicker}/bin/hyprpicker | wl-copy"
+          "$mainMod, S, exec, ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${lib.getExe' pkgs.wl-clipboard "wl-copy"} --type image/png"
+          "$mainMod, C, exec, ${lib.getExe pkgs.hyprpicker} | wl-copy"
 
-          # to switch between windows in a floating workspace
-          "ALT, Tab, cyclenext"
-          "ALT, Tab, bringactivetotop"
+          # Alt tab with last 
+          "ALT, Tab, focuscurrentorlast"
+
+          # Change focus to floating window
+          "$mainMod, Tab, cyclenext"
+          "$mainMod, Tab, bringactivetotop"
 
           # move to the first empty workspace instantly with mainMod + CTRL + [↓]
           "$mainMod CTRL, down, workspace, empty"

@@ -62,6 +62,7 @@
     # Desktop
     hyprpaper # wallpaper
     hyprpicker # color picker
+    hyprsunset # night filter
     waybar # customizable wayland bar
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default # cursor
   ];
