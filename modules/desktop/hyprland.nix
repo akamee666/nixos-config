@@ -220,8 +220,13 @@ in {
           "$mainMod, E, exec, $fileManager"
           "$mainMod SHIFT, F, exec, $browser"
           "$mainMod SHIFT, S, exec, spotify"
-
           "$mainMod, D, exec, rofi -no-lazy-grab -show drun" # launch desktop applications
+
+          # Resize mode
+          "$mainMod, R, submap, resize"
+          "$mainMod, a, togglespecialworkspace"
+          "$mainMod SHIFT, a, movetoworkspace, special"
+
 
           # Functional keybinds
           ",xf86Sleep, exec, systemctl suspend" # Put computer into sleep mode
@@ -232,8 +237,9 @@ in {
           ",xf86AudioNext,exec,playerctl next" # go to next media
           ",xf86AudioPrev,exec,playerctl previous" # go to previous media
 
-          # Screenshoot
+          # Utils
           "$mainMod, S, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy --type image/png"
+          "$mainMod, C, exec, ${pkgs.hyprpicker}/bin/hyprpicker | wl-copy"
 
           # to switch between windows in a floating workspace
           "ALT, Tab, cyclenext"
@@ -283,12 +289,25 @@ in {
     extraConfig = ''
       binds {
         workspace_back_and_forth = 1
-        #allow_workspace_cycles=1
-        #pass_mouse_when_bound=0
       }
 
       # Easily plug in any monitor
-        monitor=,preferred,auto,1
+      monitor=,preferred,auto,1
+
+      submap = resize
+
+      # Binds within the submap: use arrow keys to resize window
+      # 'binde' makes the keybind repeat when held down
+      binde=, l, resizeactive, 10 0
+      binde=, h, resizeactive, -10 0
+      binde=, k, resizeactive, 0 -10
+      binde=, j, resizeactive, 0 10
+
+      # Use escape to exit the submap
+      bind=, escape, submap, reset
+
+      # End the submap definition
+      submap = reset
     '';
   };
 

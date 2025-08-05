@@ -14,4 +14,5 @@ sudo nixos-rebuild switch
 
 # TODO
 
-add blink instead of cmp maybe
+waybar
+

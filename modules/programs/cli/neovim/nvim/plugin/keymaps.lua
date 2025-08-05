@@ -17,6 +17,13 @@ vim.g.maplocalleader = ' '
 -- Yank from current position till end of current line
 keymap.set('n', 'Y', 'y$', { silent = true, desc = '[Y]ank to end of line' })
 
+-- <C-y> Yank to system clipboard
+vim.keymap.set({'n', 'v'}, '<C-y>', '"+y', {
+  noremap = true,
+  silent = false, -- Explicitly ensure feedback messages are shown
+  desc = 'Yank to system clipboard'
+})
+
 -- Buffer list navigation
 keymap.set('n', '[b', vim.cmd.bprevious, { silent = true, desc = 'previous [b]uffer' })
 keymap.set('n', ']b', vim.cmd.bnext, { silent = true, desc = 'next [b]uffer' })

@@ -31,6 +31,8 @@
     # Fonts
     gohufont
     nerd-fonts.gohufont
+    nerd-fonts.ubuntu-sans
+    hachimarupop
 
     # CLI
     alacritty # terminal emulator
@@ -42,11 +44,13 @@
     nvim-pkg # my neovim cfg overlay
     bat # Replacing cat
     alejandra # nixformatter
-    killall
+    killall # utils (this shouldn't be here)
+    # ueberzugpp # Show images in terminal
 
     # Utils
     brave # browser
     pavucontrol # mixer
+    playerctl
     spotify # Music yay
     rofi # menu
 
@@ -56,8 +60,10 @@
     slurp
 
     # Desktop
-    hyprpaper
-    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+    hyprpaper # wallpaper
+    hyprpicker # color picker
+    waybar # customizable wayland bar
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default # cursor
   ];
 
   # Enable home-manager
