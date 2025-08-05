@@ -52,7 +52,8 @@
     pavucontrol # mixer
     playerctl # mixer ?
     spotify # Music yay
-    duf
+    duf # see disks
+    nh # cli helper
 
     # Screenshoot
     swappy
