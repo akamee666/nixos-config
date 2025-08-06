@@ -6,11 +6,7 @@
   ...
 }: {
   # You can import other NixOS modules here
-  imports = [
-    ./hardware-configuration.nix
-    ./system-packages.nix
-    ./services.nix
-  ];
+  imports = [./hardware-configuration.nix ./system-packages.nix ./services.nix];
 
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -38,10 +34,7 @@
       nix-path = config.nix.nixPath;
 
       # Cachix, avoid building binaries not available in nixcache.
-      substituters = [
-        "https://hyprland.cachix.org"
-        "https://nix-community.cachix.org"
-      ];
+      substituters = ["https://hyprland.cachix.org" "https://nix-community.cachix.org"];
 
       # All substituters should be trusted if you want to pull from them
       trusted-substituters = [
@@ -62,7 +55,6 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-
   # Bootloader.
   boot = {
     loader = {
@@ -78,11 +70,13 @@
         # Tells grub-install to place files in the EFI System partition, not to write in the raw boot sector
         # of the drive. This is the modern way to do it in UEFI Systems.
         device = "nodev";
+        # Snapshots
+        btrfs.enable = true;
       };
     };
   };
 
-  networking.hostName = "nixos"; 
+  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
