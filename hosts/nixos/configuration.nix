@@ -1,14 +1,15 @@
 {
-  inputs,
-  config,
   pkgs,
   lib,
+  config,
+  inputs,
   ...
 }: {
   # You can import other NixOS modules here
   imports = [
     ./hardware-configuration.nix
     ./system-packages.nix
+    ./services.nix
   ];
 
   nixpkgs = {
@@ -22,6 +23,12 @@
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 21d";
+    };
+
     settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
@@ -55,6 +62,7 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
+
   # Bootloader.
   boot = {
     loader = {
@@ -74,17 +82,12 @@
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-
-  # Enable networking
+  networking.hostName = "nixos"; 
   networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "pt_BR.UTF-8";
     LC_IDENTIFICATION = "pt_BR.UTF-8";

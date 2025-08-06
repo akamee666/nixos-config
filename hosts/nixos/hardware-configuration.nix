@@ -18,13 +18,13 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/663eabbc-eef2-43db-8e7f-cae986188d9d";
     fsType = "btrfs";
-    options = ["subvol=@" "compress=zstd:2" "noatime"]; 
+    options = ["subvol=@" "noatime"]; 
   };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/663eabbc-eef2-43db-8e7f-cae986188d9d";
     fsType = "btrfs";
-    options = ["subvol=@home" "compress=zstd:2" "noatime"];
+    options = ["subvol=@home" "noatime"];
   };
 
   fileSystems."/nix" = {
@@ -32,17 +32,14 @@
     device = "/dev/disk/by-uuid/663eabbc-eef2-43db-8e7f-cae986188d9d";
     fsType = "btrfs";
     # noatime is used for perfomance to avoid writing metadata everytime.
-    options = ["subvol=@nix" "compress=zstd:2" "noatime"];
+    options = ["subvol=@nix" "compress=zstd" "noatime"];
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/B889-D3EA";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
-  };
-
-  
-  swapDevices = [];
+  }; 
 
   networking.useDHCP = lib.mkDefault true;
 

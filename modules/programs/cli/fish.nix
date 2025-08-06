@@ -26,14 +26,20 @@
       htop = "btop";
       find = "fd --color never";
 
+      # Nix
+      nhhm = "nh home switch .#homeConfigurations.akame@nixos.activationPackage";
+      nhos = "nh os switch /etc/nixos";
+
       # Servers and Vm's
       sharedwin = "cd ~/.akame/sharedwin/";
       mountsshfs_homeserver = "sudo sshfs -o allow_other,default_permissions,kernel_cache,cache=yes akame@192.168.1.100:/home/akame/ ~/.akame/server/ -p 2222";
       mountsshfs_backup = "sudo sshfs -o allow_other,default_permissions,kernel_cache,cache=yes akame@192.168.1.100:/home/shared/ ~/.akame/home-backup/ -p 2222";
+
       # Rust ;
       cargo_build_win = "cargo build --target x86_64-pc-windows-gnu";
       lint = "./lint.sh";
       clippy = "cargo clippy -- -A clippy::all";
+
       # Git;
       gcl = "git clone";
       gst = "git status";
