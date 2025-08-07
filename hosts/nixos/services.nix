@@ -1,4 +1,11 @@
 {...}: {
+  # Virtualisation, enable guest utilities
+  services.qemuGuest.enable =true;
+  services.spice-vdagentd.enable = true;
+
+
+  # File system
+
   # Scrubbing - is the process of checking file consistency (for this it may use checksums and/or duplicated copies of data, from raid for example). Scrubbing may be done "online", meaning you don't need to unmount a subvolume to scrub it.
   services.btrfs.autoScrub = {
     enable = true;

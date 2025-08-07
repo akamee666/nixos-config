@@ -284,7 +284,7 @@ in {
       submap = reset
     '';
   };
-
+  
   # Hyprpaper
   xdg.configFile."hypr/hyprpaper.conf" = {
     text = ''

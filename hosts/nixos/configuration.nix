@@ -96,7 +96,7 @@
   users.users.akame = {
     isNormalUser = true;
     description = "akame";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "libvirtd"];
     # TTY default shell
     shell = pkgs.fish;
   };

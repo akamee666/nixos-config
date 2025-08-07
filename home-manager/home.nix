@@ -26,7 +26,8 @@
     username = "akame";
     homeDirectory = "/home/akame";
   };
-
+  # Here lies packages that don't require any configuration/setup whatsoever.
+  # Important apps are at ./modules/*
   home.packages = with pkgs; [
     # Fonts
     gohufont
@@ -34,12 +35,14 @@
     nerd-fonts.ubuntu-sans
     hachimarupop
 
-    # trying
+    # Testing stuff
     evil-helix
 
-    # CLI
-    alacritty # terminal emulator
-    fish # shell
+    kitty # another terminal emulator if something goes wrong
+    tree # display cool things
+    fd # find stuff
+    eza # print stuff
+
     wl-clipboard # wayland clipboard
     btop # process monitor
     fzf # fuzzy finder to find things
@@ -56,7 +59,6 @@
     playerctl # mixer ?
     spotify # Music yay
     duf # see disks
-    nh # cli helper
 
     # Screenshoot
     swappy
@@ -67,8 +69,6 @@
     hyprpaper # wallpaper
     hyprpicker # color picker
     hyprsunset # night filter
-    waybar # customizable wayland bar
-    rofi # menu
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default # cursor
   ];
 

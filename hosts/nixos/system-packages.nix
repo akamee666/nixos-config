@@ -5,12 +5,18 @@
 }: {
   environment.systemPackages = with pkgs; [
     git
-    yazi
-    kitty
-    tree
-    eza
-    fd
+
+    # Virtualization
+    qemu
+    virt-manager
+    libvirt
   ];
+
+  # Virtualization
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true; # GUI
+
+
 
   # Fish config is manager responsible but shell is installed systemwide
   # programs.fish.enable = true;
