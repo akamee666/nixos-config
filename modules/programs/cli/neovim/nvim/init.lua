@@ -3,7 +3,9 @@ vim.loader.enable()
 local cmd = vim.cmd
 local opt = vim.o
 
-opt.path = vim.o.path .. '**'
+if not vim.o.path:find('**', 1, true) then
+  opt.path = vim.o.path .. ',**'
+end
 
 opt.number = true
 opt.relativenumber = true
@@ -21,7 +23,7 @@ opt.foldenable = true
 opt.history = 2000
 opt.nrformats = 'bin,hex' -- 'octal'
 opt.undofile = true
-opt.cmdheight = 0 -- Does not show command line
+opt.cmdheight = 1 -- Does not show command line
 
 -- Native plugins
 cmd.filetype('plugin', 'indent', 'on')

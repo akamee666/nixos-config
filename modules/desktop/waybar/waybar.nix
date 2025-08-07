@@ -116,7 +116,7 @@ in {
             stopped = "";
           };
           "dynamic-order" = ["title" "artist"];
-          "ignored-players" = ["firefox"];
+          "ignored-players" = ["brave" "firefox"];
         };
 
         cpu = {

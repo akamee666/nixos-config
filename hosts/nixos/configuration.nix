@@ -70,8 +70,6 @@
         # Tells grub-install to place files in the EFI System partition, not to write in the raw boot sector
         # of the drive. This is the modern way to do it in UEFI Systems.
         device = "nodev";
-        # Snapshots
-        btrfs.enable = true;
       };
     };
   };

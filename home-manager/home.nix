@@ -34,6 +34,9 @@
     nerd-fonts.ubuntu-sans
     hachimarupop
 
+    # trying
+    evil-helix
+
     # CLI
     alacritty # terminal emulator
     fish # shell

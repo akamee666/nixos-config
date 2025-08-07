@@ -60,3 +60,6 @@ hl(0, "MultiCursorMatchPreview", { link = "Search" })
 hl(0, "MultiCursorDisabledCursor", { reverse = true })
 hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
 hl(0, "MultiCursorDisabledSign", { link = "SignColumn"})
+
+vim.g.VM_refresh_in_insert = true;
+vim.g.VM_silent_exit = true

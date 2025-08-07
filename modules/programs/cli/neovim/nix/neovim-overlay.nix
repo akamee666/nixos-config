@@ -51,7 +51,6 @@ with final.pkgs.lib; let
     sqlite-lua
     plenary-nvim
     nvim-web-devicons
-    vim-repeat
 
     # Plugins from flake.nix
     (mkNvimPlugin inputs.multicursor-nvim "multicursor.nvim")
