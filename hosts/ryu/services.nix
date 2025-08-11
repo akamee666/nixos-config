@@ -1,8 +1,7 @@
 {...}: {
   # Virtualisation, enable guest utilities
-  services.qemuGuest.enable =true;
+  services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
-
 
   # File system
 

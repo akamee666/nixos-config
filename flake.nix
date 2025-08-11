@@ -1,4 +1,5 @@
-{
+{ 
+  # ryu and tora
   description = "My NixOS config :D";
 
   inputs = {
@@ -78,11 +79,12 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
+      # Home-pc
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
-          ./hosts/nixos/configuration.nix
+          ./hosts/ryu/configuration.nix
           # SystemWide imports
           inputs.flake-programs-sqlite.nixosModules.programs-sqlite
         ];
@@ -92,7 +94,7 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager switch --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "akame@nixos" = home-manager.lib.homeManagerConfiguration {
+      "akame@ryu" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [

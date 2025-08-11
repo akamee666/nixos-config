@@ -13,7 +13,6 @@ opt.cursorline = true
 opt.lazyredraw = false -- Lazy Redraw screen when macros
 opt.showmatch = true -- Highlight matching parentheses, etc
 opt.incsearch = true
-opt.hlsearch = true
 
 opt.expandtab = true
 opt.tabstop = 2
@@ -24,6 +23,23 @@ opt.history = 2000
 opt.nrformats = 'bin,hex' -- 'octal'
 opt.undofile = true
 opt.cmdheight = 1 -- Does not show command line
+
+-- Change the highlighting feature when searching
+
+local hl_ns = vim.api.nvim_create_namespace('search')
+local hlsearch_group = vim.api.nvim_create_augroup('hlsearch_group', { clear = true })
+
+vim.api.nvim_create_autocmd('CursorMoved', {
+  group = hlsearch_group,
+  callback = function()
+    vim.on_key(function(char)
+      if vim.fn.mode() == "n" then
+        local new_hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, vim.fn.keytrans(char))
+        if vim.opt.hlsearch:get() ~= new_hlsearch then vim.opt.hlsearch = new_hlsearch end
+      end
+    end, vim.api.nvim_create_namespace "auto_hlsearch")
+  end,
+})
 
 -- Native plugins
 cmd.filetype('plugin', 'indent', 'on')

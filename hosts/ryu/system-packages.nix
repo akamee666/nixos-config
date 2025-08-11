@@ -16,8 +16,6 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true; # GUI
 
-
-
   # Fish config is manager responsible but shell is installed systemwide
   # programs.fish.enable = true;
   # Enable home-manager and git

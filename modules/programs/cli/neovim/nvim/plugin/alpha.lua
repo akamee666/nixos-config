@@ -38,7 +38,7 @@ dashboard.section.header.opts.hl = pick_color()
 
 dashboard.section.buttons.val = {
   dashboard.button("ff", " " .. " > find file",    "<cmd>lua require('fzf-lua').files()<cr>"),
-  dashboard.button("fg", " " .. " > find word",    "<cmd>lua require('fzf-lua').live_grep()<cr>"),
+  dashboard.button("fw", " " .. " > find word",    "<cmd>lua require('fzf-lua').live_grep()<cr>"),
   dashboard.button("fr", " " .. " > recents",      "<cmd>lua require('fzf-lua').oldfiles()<cr>"),
   dashboard.button("n", " " .. " > new file",     "<cmd>ene<cr>"),
   dashboard.button("c", " " .. " > config",       function()

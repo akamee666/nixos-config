@@ -74,7 +74,8 @@
     };
   };
 
-  networking.hostName = "nixos";
+  # 竜
+  networking.hostName = "ryu";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
