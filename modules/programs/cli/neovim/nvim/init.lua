@@ -22,7 +22,7 @@ opt.foldenable = true
 opt.history = 2000
 opt.nrformats = 'bin,hex' -- 'octal'
 opt.undofile = true
-opt.cmdheight = 1 -- Does not show command line
+opt.cmdheight = 0
 
 -- Change the highlighting feature when searching
 

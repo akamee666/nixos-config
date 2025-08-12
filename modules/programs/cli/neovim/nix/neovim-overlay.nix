@@ -43,6 +43,7 @@ with final.pkgs.lib; let
     alpha-nvim
     fzf-lua
     which-key-nvim
+    bufferline-nvim
 
     nvim-unception
 
