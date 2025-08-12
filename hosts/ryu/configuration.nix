@@ -6,7 +6,14 @@
   ...
 }: {
   # You can import other NixOS modules here
-  imports = [./hardware-configuration.nix ./system-packages.nix ./services.nix];
+  imports = [
+    ./hardware-configuration.nix
+    ./system-packages.nix
+    ./services.nix
+    # Flakes
+    inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.flake-programs-sqlite.nixosModules.programs-sqlite
+  ];
 
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -56,23 +63,31 @@
   };
 
   # Bootloader.
-  boot = {
-    loader = {
-      systemd-boot.enable = false;
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot";
-      grub = {
-        enable = true;
-        # Find other boot entries (dual-boot)
-        useOSProber = true;
-        # Modern BIOS
-        efiSupport = true;
-        # Tells grub-install to place files in the EFI System partition, not to write in the raw boot sector
-        # of the drive. This is the modern way to do it in UEFI Systems.
-        device = "nodev";
-      };
+  # Lanzaboote currently replaces the systemd-boot module.
+  # This setting is usually set to true in configuration.nix
+  # generated at installation time. So we force it to false
+  # for now.
+  boot.loader.systemd-boot = {
+    enable = lib.mkForce false;
+    consoleMode = "max";
+    editor = false;
+
+    extraEntries = {
+      "windows.conf" = ''
+        title   Windows
+        efi     /EFI/Microsoft/Boot/bootmgfw.efi
+      '';
     };
   };
+
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
+
+  # Generation label
+  system.nixos.label = "NixOS_${builtins.substring 6 8 config.system.nixos.version}";
 
   # 竜
   networking.hostName = "ryu";

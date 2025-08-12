@@ -10,6 +10,9 @@
     qemu
     virt-manager
     libvirt
+
+    # SecureBoot
+    sbctl
   ];
 
   # Virtualization

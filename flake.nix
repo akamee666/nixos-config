@@ -1,4 +1,4 @@
-{ 
+{
   # ryu and tora
   description = "My NixOS config :D";
 
@@ -10,6 +10,11 @@
     # Alacritty themes
     alacritty-theme = {
       url = "github:alexghr/alacritty-theme.nix";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Hyprland
@@ -54,7 +59,6 @@
     self,
     nixpkgs,
     home-manager,
-    alacritty-theme,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -85,8 +89,6 @@
         modules = [
           # > Our main nixos configuration file <
           ./hosts/ryu/configuration.nix
-          # SystemWide imports
-          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
         ];
       };
     };

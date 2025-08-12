@@ -138,9 +138,9 @@
       };
 
       nhhm = {
-          body = ''
-            nh home switch /etc/nixos#homeConfigurations.akame@$argv[1].activationPackage
-          '';
+        body = ''
+          nh home switch /etc/nixos#homeConfigurations.akame@$argv[1].activationPackage
+        '';
       };
 
       y = {
