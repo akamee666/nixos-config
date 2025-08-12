@@ -12,7 +12,7 @@ require("bufferline").setup({
 
 -- always show tabline
 vim.o.showtabline = 2
-vim.o.hidden = true
+-- vim.o.hidden = true
 
 -- Buffer list navigation
 vim.keymap.set('n', 'bb', vim.cmd.bnext, { silent = true, desc = 'next [b]uffer' })

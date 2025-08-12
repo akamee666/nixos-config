@@ -1,19 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   # Virtualisation, enable guest utilities
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
-
-  # Display Managers
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
-        user = "akame";
-      };
-    };
-  };
 
   # File system
 
