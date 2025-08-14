@@ -3,21 +3,9 @@
   pkgs,
   ...
 }: {
-  environment.systempackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     git
-
-    # virtualization
-    qemu
-    virt-manager
-    libvirt
-
-    # secureboot
-    sbctl
   ];
-
-  # virtualization
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true; # gui
 
   # fish config is manager responsible but shell is installed systemwide
   # programs.fish.enable = true;
@@ -31,8 +19,8 @@
   # this below, instead, will be pulled by the inputs variable set in flake.nix and imported bc of specialargs = {inherint inputs };
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostplatform.system}.hyprland;
-    portalpackage = inputs.hyprland.packages.${pkgs.stdenv.hostplatform.system}.xdg-desktop-portal-hyprland;
+    # package = inputs.hyprland.packages.${pkgs.stdenv.hostplatform.system}.hyprland;
+    # portalpackage = inputs.hyprland.packages.${pkgs.stdenv.hostplatform.system}.xdg-desktop-portal-hyprland;
   };
 
   # enable the xwayland compatibility layer for x11 applications

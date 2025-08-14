@@ -42,8 +42,8 @@ in {
       ];
 
       input = {
-        kb_layout = "us";
-        kb_variant = "";
+        kb_layout = "br";
+        kb_variant = "thinkpad";
         kb_options = "caps:swapescape";
 
         follow_mouse = 1;
@@ -163,7 +163,7 @@ in {
       bind =
         [
           # Night Mode (lower value means warmer temp)
-          "$mainMod, F9, exec, ${lib.getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
+          "$mainMod, F9, exec, ${lib.getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 250
           "$mainMod, F10, exec, pkill hyprsunset"
 
           # Window/Session actions

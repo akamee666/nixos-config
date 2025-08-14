@@ -51,7 +51,7 @@
 
     # My own neovim overlay
     nvim-config = {
-      url = "path:./modules/programs/cli/neovim";
+      url = "path:./modules/sora/programs/cli/neovim";
     };
   };
 
@@ -91,6 +91,14 @@
           ./hosts/ryu/configuration.nix
         ];
       };
+      sora = nixpkgs.lib.nixosSystem {
+	 specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./hosts/sora/configuration.nix
+        ];
+
+      };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -101,9 +109,20 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          ./home-manager/home.nix
+          ./home-manager/ryu/home.nix
+        ];
+      };
+
+      "ak4m3@sora" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main home-manager configuration file <
+          ./home-manager/sora/home.nix
         ];
       };
     };
-  };
+
+    };
+
 }

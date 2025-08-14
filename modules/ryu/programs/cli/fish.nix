@@ -139,7 +139,7 @@
 
       nhhm = {
         body = ''
-          nh home switch /etc/nixos#homeConfigurations.akame@$argv[1].activationPackage
+          nh home switch /etc/nixos#homeConfigurations.ak4m3@$argv[1].activationPackage
         '';
       };
 
