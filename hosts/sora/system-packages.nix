@@ -5,6 +5,7 @@
 }: {
   environment.systemPackages = with pkgs; [
     git
+    blueman
   ];
 
   # fish config is manager responsible but shell is installed systemwide

@@ -109,7 +109,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          ./home-manager/ryu/home.nix
+          ./home-manager/ryu.nix
         ];
       };
 
@@ -118,7 +118,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main home-manager configuration file <
-          ./home-manager/sora/home.nix
+          ./home-manager/sora.nix
         ];
       };
     };

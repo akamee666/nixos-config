@@ -9,6 +9,9 @@
     fileSystems = ["/"];
   };
 
+  services.power-profiles-daemon.enable = true;
+  # services.swaync.enable = true;
+
   services.snapper = {
     snapshotInterval = "hourly";
     cleanupInterval = "1d";

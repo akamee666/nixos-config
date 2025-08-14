@@ -6,8 +6,8 @@
   ...
 }: {
   imports = [
-    ../../modules/sora/desktop
-    ../../modules/sora/programs/cli
+    ../modules/sora/desktop
+    ../modules/sora/programs/cli
   ];
 
   nixpkgs = {
@@ -38,7 +38,8 @@
 
     # Testing stuff
     evil-helix
-
+    swaynotificationcenter
+    eww
     kitty # another terminal emulator if something goes wrong
     tree # display cool things
     fd # find stuff
