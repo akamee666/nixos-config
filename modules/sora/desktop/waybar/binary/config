@@ -31,7 +31,7 @@
     "format": " ",
     "tooltip": false,
     
-    "on-click": "~/.config/hypr/scripts/rofilaunch.sh --drun",
+    "on-click": "~/.config/waybar/scripts/rofilaunch.sh --drun",
 },
 
   "custom/runner": {
@@ -39,12 +39,12 @@
     "format": " ",
     "tooltip": false,
     
-    "on-click": "~/.config/hypr/scripts/rofilaunch.sh --system_menu"
+    "on-click": "~/.config/waybar/scripts/rofilaunch.sh --system_menu"
 },
 
 "custom/os_button": {
     "format": "",
-    "on-click": "~/.config/hypr/scripts/rofilaunch.sh --menu",
+    "on-click": "~/.config/waybar/scripts/rofilaunch.sh --menu",
     "tooltip": false
   },
 
@@ -86,8 +86,8 @@
     "tooltip-format": "{icon} {essid}",
     "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
 
-    "on-click": "bash ~/.config/hypr/scripts/actioncenter.sh &  eww close calendar",
-    "on-click-right": "bash .config/hypr/scripts/rofiwifi.sh"
+    "on-click": "bash ~/.config/waybar/scripts/actioncenter.sh &  eww close calendar",
+    "on-click-right": "bash .config/waybar/scripts/rofiwifi.sh"
 },
 
 "bluetooth": {
@@ -126,7 +126,7 @@
 
 "battery": {
 
-    "on-click": "bash ~/.config/hypr/scripts/actioncenter.sh &  eww close calendar",
+    "on-click": "bash ~/.config/waybar/scripts/actioncenter.sh &  eww close calendar",
 
     "states": {"good": 95, "warning": 30, "critical": 20},
     
@@ -153,7 +153,7 @@
     "default": [" ", " "]
     },
 
-    "on-click": "bash ~/.config/hypr/scripts/actioncenter.sh &  eww close calendar",
+    "on-click": "bash ~/.config/waybar/scripts/actioncenter.sh &  eww close calendar",
     "menu": "on-click-right",
     "menu-file": "~/.config/waybar/volume_menu.xml",
 	"menu-actions": {
@@ -171,7 +171,7 @@
     "tooltip-format": "{icon} {percent}%",
     "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
     
-    "on-click": "bash ~/.config/hypr/scripts/actioncenter.sh &  eww close calendar"
+    "on-click": "bash ~/.config/waybar/scripts/actioncenter.sh &  eww close calendar"
 },
 
 // ========================================================
@@ -223,11 +223,11 @@
     
     "persistent-workspaces": { "*": 4 },
     "format-icons": {
-        //"1": "一",
-        //"2": "二",
-        //"3": "三",
-        //"4": "四",
-        //"5": "五",
+        "1": "一",
+        "2": "二",
+        "3": "三",
+        "4": "四",
+        "5": "五",
         "urgent": "",
         // "active": "",
         // "default": "󰧞",
@@ -237,7 +237,6 @@
 },
 
 // ========================================================
-
 
 
 

@@ -11,7 +11,12 @@ in {
     style = builtins.readFile ./${theme}/style.css;
   };
 
-  # Weather
-  xdg.configFile."waybar/scripts".source = ./scripts;
-  xdg.configFile."waybar".source = ./${theme};
-}
+ xdg.configFile."waybar" = {
+    source = ./${theme}; # Assuming 'theme' is a directory with config, style.css etc.
+    recursive = true;
+  };
+
+  xdg.configFile."waybar/scripts" = {
+    source = ./scripts;
+    recursive = true;
+  };}
