@@ -44,7 +44,7 @@
 (defvar bluetoggle false)
 (defvar nighttoggle false)
 (defpoll cafein :interval "1s"
-  "$HOME/.config/hypr/scripts/cafein state")
+  "$HOME/.config/scripts/cafein state")
 
 
 (defvar notification ``)

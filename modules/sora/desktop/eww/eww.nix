@@ -1,5 +1,4 @@
 {...}: {
-
   programs.eww = {
     enable = true;
   };
@@ -8,5 +7,4 @@
     source = ./config;
     recursive = true;
   };
-
 }

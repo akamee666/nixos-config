@@ -74,7 +74,7 @@
         :onclick "thunar ~ & eww open actioncenter --toggle &" " ")
         (button 
         :class { cafein != 'false' ? "button-active" : "button"} 
-        :onclick {cafein != false ? "bash $HOME/.config/hypr/scripts/cafein toggle & eww update cafein='false'" : "$HOME/.config/hypr/scripts/cafein toggle & eww update cafein='true'"} 
+        :onclick {cafein != false ? "bash $HOME/.config/scripts/cafein toggle & eww update cafein='false'" : "$HOME/.config/hypr/scripts/cafein toggle & eww update cafein='true'"} 
         " ")
 
       )
