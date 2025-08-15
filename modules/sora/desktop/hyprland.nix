@@ -42,9 +42,9 @@ in {
       ];
 
       input = {
-        kb_layout = "br";
-        kb_variant = "thinkpad";
-        kb_options = "caps:swapescape";
+        kb_layout = "us,br";
+        kb_variant = ",thinkpad";
+          kb_options = "grp:alt_shift_toggle, caps:swapescape";
 
         follow_mouse = 1;
 
