@@ -14,6 +14,13 @@ In this case, this will be better for you, take it: [starter config](https://git
 
 Ok then, have fun and if you have any questions feel free to contact me somewhere so i can *try* to help you!!
 
+Managing this config with one hosts was kinda hard already but now that i have two hosts (With completely different configs) is even harder.
+
+My main desktop (ruy) uses my own config which i made along of the years using linux. My notebook (sora) is using this guy's config which i thought was kinda cool so i'm copying it. I'm still testing things out so everything is a fucking mess
+
+[binary harbinger hyprdots](https://github.com/BinaryHarbinger/hyprdots)
+
+
 # Tooling
 
 -  hyprland (window manager)
@@ -27,4 +34,12 @@ Ok then, have fun and if you have any questions feel free to contact me somewher
 -  brave (cool browser)
 -  snapper (snapshot manager for btrfs)
 
-[showcase](./showcase.png)
+# Showcase
+
+Ryu, main desktop:
+
+[showcase-ruy](./showcase.png)
+
+Sora, thinkpad:
+
+[showcase-sora](./showcase-sora.png)
