@@ -5,8 +5,7 @@
 
   stylix = {
     enable = true;
-    image = ../../../wallpapers/red.jpg;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = ../../../themes/blue.yaml;
 
     targets.alacritty.enable = false;
     targets.fish.enable = false;
