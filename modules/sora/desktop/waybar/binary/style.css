@@ -216,9 +216,12 @@ tooltip label {
 }
 
 #mpris {
-	padding: 0px;
-    margin: 0px 8px;
-	min-width: 90px;
+    border: 2px solid @border-main;
+    border-radius: 10px;
+    margin: 0px 10px;
+    background-color: @bg-main;
+    padding: 0px 10px;
+    padding-left: 2px;
 }
 
 #mpris.paused {
@@ -267,6 +270,8 @@ tooltip label {
     padding: 0px 10px;
     padding-left: 2px;
 }
+
+
 
 #clock {
     font-size: 14px;

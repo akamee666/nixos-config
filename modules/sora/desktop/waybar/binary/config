@@ -34,20 +34,6 @@
     "on-click": "~/.config/scripts/rofilaunch.sh --drun",
 },
 
-  "custom/runner": {
-
-    "format": " ",
-    "tooltip": false,
-    
-    "on-click": "~/.config/scripts/rofilaunch.sh --system_menu"
-},
-
-"custom/os_button": {
-    "format": "",
-    "on-click": "~/.config/scripts/rofilaunch.sh --menu",
-    "tooltip": false
-  },
-
 // ============================================================
 
 
@@ -57,21 +43,20 @@
 
 "mpris": {
     
-    "format": "{status_icon} {dynamic}",
+    "format": " {status_icon} {dynamic} ",
     
-    "player-icons": {
-      "default": "▶  Playing"
-      },
-
     "status-icons": {
-      "paused": "  Paused",
-      "playing": "  Playing",
-      "stopped": " Stopped",
+      "paused": "",
+      "playing": "",
+      "stopped": "",
     },
 
-    "dynamic-order": ["title", "artist"]
+    "dynamic-len": "30",
 
-    "tooltip": false
+    "dynamic-order": ["title" , "artist"],
+
+    "tooltip": false,
+    "ignored-playes": ["brave", "firefox"]
 },
 
 // ===================================================
@@ -291,6 +276,10 @@
     "interval": 5
   },
 
+  "disk": {
+    "format": "{percentage_used}% 󰋊" ,
+  },
+
 // =======================================================
 
 
@@ -301,7 +290,7 @@
 
 "group/hardware": {
 	"orientation": "horizontal",
-	"modules": ["memory", "cpu"]
+	"modules": ["memory", "cpu", "disk"]
 	},
 
 "group/controlCenter": {
@@ -310,7 +299,7 @@
 			"pulseaudio",
 			"network",
 			"battery",
-            "backlight"
+      "backlight"
 		]
 },
     
@@ -318,10 +307,8 @@
 	"orientation": "horizontal",
 	"modules": [
 			"custom/search",
-            "custom/runner",
-            "custom/os_button",
             "group/hardware"
-            ]
+      ]
 },
 
 "group/rightSide": {

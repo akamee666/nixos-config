@@ -1,18 +1,14 @@
 { pkgs, inputs, ... }: {
-
   imports = [
-    inputs.stylix.nixosModules.stylix
+    inputs.stylix.homeManagerModules.stylix
   ];
 
-  programs.stylix = {
+  stylix = {
     enable = true;
+    image = ../../../wallpapers/red.jpg;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
-    image = ../../../wallpapers/red.png;
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-
-    # Font settings
-    fonts = {
-      monospace = "Gohu Font 14 Nerd Font Mono";
-    };
+    targets.alacritty.enable = false;
+    targets.fish.enable = false;
   };
 }
