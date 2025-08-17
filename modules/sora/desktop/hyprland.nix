@@ -293,10 +293,8 @@ in {
       preload = ${walls}/light_anm04.jpg
       preload = ${walls}/robot_light_girl.png
       preload = ${walls}/lucy-red-background.png
-      wallpaper = , ${walls}/light_anm07.png
-      # wallpaper = , ${walls}/lucy-red-background.png
-      # wallpaper = , ${walls}/robot_light_girl.png
-      # wallpaper = , ${walls}/light_anm04.jpg
+      preload = ${walls}/red.png
+      wallpaper = , ${walls}/red.png
     '';
   };
 }

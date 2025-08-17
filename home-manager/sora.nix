@@ -34,12 +34,14 @@
     nerd-fonts.gohufont
     nerd-fonts.ubuntu-sans
     nerd-fonts.jetbrains-mono
-    hachimarupop
+    hachimarupop # Cute japanese font
 
     # Testing stuff
-    evil-helix
-    swaynotificationcenter
-    eww
+    evil-helix  # This is a editor
+    swaynotificationcenter # This create notifications
+    eww # This create little windows
+
+
     kitty # another terminal emulator if something goes wrong
     tree # display cool things
     fd # find stuff
