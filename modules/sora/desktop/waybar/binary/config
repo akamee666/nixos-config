@@ -12,7 +12,7 @@
 
     "modules-left": ["group/leftSide"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "group/rightSide", "custom/swaync"],
+    "modules-right": ["mpris", "group/rightSide", "custom/swaync"],
   
     "hyprland/language": {
         "format": "{}",
@@ -57,16 +57,19 @@
 
 "mpris": {
     
-    "format": "{status_icon}",
+    "format": "{status_icon} {dynamic}",
     
     "player-icons": {
-      "default": "▶  Playing"},
+      "default": "▶  Playing"
+      },
 
     "status-icons": {
       "paused": "  Paused",
       "playing": "  Playing",
       "stopped": " Stopped",
     },
+
+    "dynamic-order": ["title", "artist"]
 
     "tooltip": false
 },
@@ -317,7 +320,6 @@
 			"custom/search",
             "custom/runner",
             "custom/os_button",
-            "mpris",
             "group/hardware"
             ]
 },
