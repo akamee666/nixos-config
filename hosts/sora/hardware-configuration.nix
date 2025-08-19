@@ -16,6 +16,9 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd" "thinkpad_acpi"];
   boot.extraModulePackages = [];
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  powerManagement.cpuFreqGovernor = "performance";
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/505fe06c-d1b8-4499-ae30-d25cc7a3592b";

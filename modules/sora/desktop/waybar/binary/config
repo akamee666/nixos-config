@@ -228,6 +228,6 @@
 
     "group/rightSide": {
       "orientation": "horizontal",
-      "modules": ["group/controlCenter","power-profiles-daemon", "clock"]
+      "modules": ["group/controlCenter","bluetooth","power-profiles-daemon", "clock"]
     },
 }

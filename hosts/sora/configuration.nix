@@ -16,8 +16,6 @@
     inputs.flake-programs-sqlite.nixosModules.programs-sqlite
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
@@ -63,17 +61,6 @@
 
   system.nixos.label = "NixOS_${builtins.substring 6 8 config.system.nixos.version}";
 
-  # TODO: Change it later
-  programs.git.enable = true;
-  programs.command-not-found.enable = true;
-  programs.fish.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-
   networking.hostName = "sora";
   networking.networkmanager.enable = true;
 
@@ -102,11 +89,11 @@
     home = "/home/ak4m3";
     description = " ak4m3";
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
     shell = pkgs.fish;
   };
 
   environment.variables.EDITOR = "nvim";
   services.getty.autologinUser = "ak4m3";
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.05";
+  nixpkgs.config.allowUnfree = true;
 }
