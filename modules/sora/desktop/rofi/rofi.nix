@@ -1,10 +1,17 @@
 {pkgs, ...}: {
   programs.rofi = {
     enable = true;
-  };
+    package = pkgs.rofi-wayland;
+    terminal = "${pkgs.alacritty}/bin/alacritty";
 
-  xdg.configFile."rofi" = {
-    source = ./rasi-files;
-    recursive = true;
+    extraConfig = {
+      modi = "drun";
+      show-icons = true;
+      drun-display-format = "{icon} {name}";
+      disable-history = false;
+      hide-scrollbar = true;
+      display-drun = "   Apps ";
+      sidebar-mode = true;
+    };
   };
 }

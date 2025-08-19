@@ -24,9 +24,6 @@ in {
     source = ./binary/config;
   };
 
-  xdg.configFile."waybar/volume_menu.xml" = {
-    source = ./binary/volume_menu.xml;
-  };
   programs.waybar = {
     enable = true;
     style = ''
@@ -34,8 +31,7 @@ in {
         all: unset;
         font-family: "JetBrainsMono Nerd Font", "Fira Mono";
         font-weight: 700;
-        font-size: 12.5px;
-        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+        font-size: 15.5px;
       }
 
       window#waybar {
@@ -81,7 +77,6 @@ in {
       }
       #workspaces button {
         color: #${customColors.fg-unactive};
-        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
         padding: 2px 10px;
         margin: 3px 4px;
         background-color: #${customColors.bg-third};
@@ -116,66 +111,6 @@ in {
         border-radius: 10px;
         margin-left: 20px;
         margin-right: 20px;
-      }
-
-      #tray {
-        margin-left: 5px;
-        margin-right: 5px;
-        border: 2px solid #${customColors.border-main};
-        border-radius: 10px;
-        padding: 0px 10px;
-        margin-right: 20px;
-        background-color: #${customColors.bg-main};
-      }
-      #tray > .passive {
-        border-bottom: none;
-      }
-
-      #tray > widget {
-        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-        border-radius: 8px;
-        padding: 0px 3px;
-      }
-
-      #tray menu, menu {
-        font-family: "JetBrainsMono Nerd Font";
-        border: 2px solid #${customColors.border-main};
-        border-radius: 10px;
-        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-        background-color: #${customColors.bg-main};
-        padding: 5px 2px;
-      }
-
-      #tray menu > *, menu > * {
-        color: #${customColors.fg-main};
-        border: 2px solid transparent;
-        border-radius: 10px;
-        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-        padding: 0px 8px;
-      }
-
-      #tray menu > *:hover, menu > *:hover {
-        border: 2px solid #${customColors.border-main};
-        background-color: #${customColors.bg-third2};
-        border: 2px solid transparent;
-        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-        border-bottom: 2px solid #${customColors.fg-main};
-      }
-
-      #tray menu > *:active, menu > *:active {
-        background-color: #${customColors.bg-third2};
-        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-      }
-
-      #language {
-        background-color: #${customColors.bg-main};
-        padding-left: 5px;
-        padding-right: 5px;
-        border: 2px solid #${customColors.border-main};
-        border-left: 0px;
-        border-right: 0px;
-        border-radius: 0px;
-        transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
       }
 
       #bluetooth {
@@ -225,10 +160,6 @@ in {
         background-color: #${customColors.bg-main};
         padding: 0px 10px;
         padding-left: 2px;
-      }
-
-      #mpris.paused {
-        color: #${customColors.bg-third};
       }
 
       #custom-swaync:hover, #tray > widget:hover, #custom-search:hover, #custom-os_button:hover, #custom-runner:hover, #mpris:hover, #custom-cafein:hover, #clock:hover, #power-profiles-daemon:hover {
@@ -282,7 +213,7 @@ in {
       }
 
       #controlCenter:hover {
-        background-color: #${customColors.fg-unactive};
+        background-color: #${customColors.bg-third};
       }
 
       #network, #pulseaudio, #battery, #backlight {

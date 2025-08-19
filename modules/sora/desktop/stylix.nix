@@ -1,11 +1,11 @@
 { pkgs, inputs, ... }: {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeModules.stylix
   ];
 
   stylix = {
     enable = true;
-    base16Scheme = ../../../themes/blue.yaml;
+    base16Scheme = ../../../themes/red.yaml;
 
     targets.alacritty.enable = false;
     targets.fish.enable = false;

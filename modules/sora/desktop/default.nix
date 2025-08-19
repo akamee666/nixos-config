@@ -3,7 +3,6 @@
     ./hyprland.nix
     ./rofi/rofi.nix
     ./waybar/waybar.nix
-    ./eww/eww.nix
     ./stylix.nix
   ];
 

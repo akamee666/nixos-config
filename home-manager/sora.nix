@@ -39,7 +39,6 @@
     # Testing stuff
     evil-helix  # This is a editor
     swaynotificationcenter # This create notifications
-    eww # This create little windows
 
 
     kitty # another terminal emulator if something goes wrong

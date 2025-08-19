@@ -37,8 +37,6 @@ in {
       exec-once = [
         "${lib.getExe pkgs.hyprpaper}"
         "${lib.getExe pkgs.waybar}"
-        "[workspace 5 silent] brave"
-        "[workspace 0 silent] spotify"
       ];
 
       input = {

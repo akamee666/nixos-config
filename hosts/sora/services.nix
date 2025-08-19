@@ -10,7 +10,7 @@
   };
 
   services.power-profiles-daemon.enable = true;
-  # services.swaync.enable = true;
+  services.blueman.enable = true;
 
   services.snapper = {
     snapshotInterval = "hourly";
