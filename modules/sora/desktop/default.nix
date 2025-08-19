@@ -8,6 +8,6 @@
 
   xdg.configFile."scripts" = {
     source = ./scripts;
-    recursive = true; 
+    recursive = true;
   };
 }

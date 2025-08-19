@@ -64,26 +64,37 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local function desc(description)
       return { noremap = true, silent = true, buffer = bufnr, desc = description }
     end
-    keymap.set('n', 'gD', vim.lsp.buf.declaration, desc('lsp [g]o to [D]eclaration'))
-    keymap.set('n', 'gd', vim.lsp.buf.definition, desc('lsp [g]o to [d]efinition'))
-    keymap.set('n', '<space>gt', vim.lsp.buf.type_definition, desc('lsp [g]o to [t]ype definition'))
-    -- keymap.set('n', 'K', vim.lsp.buf.hover, desc('[lsp] hover'))
-    keymap.set('n', '<space>pd', peek_definition, desc('lsp [p]eek [d]efinition'))
-    keymap.set('n', '<space>pt', peek_type_definition, desc('lsp [p]eek [t]ype definition'))
-    keymap.set('n', 'gi', vim.lsp.buf.implementation, desc('lsp [g]o to [i]mplementation'))
-    keymap.set('n', 'K', vim.lsp.buf.signature_help, desc('[lsp] signature help'))
-    keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, desc('lsp add [w]orksp[a]ce folder'))
-    keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, desc('lsp [w]orkspace folder [r]emove'))
-    keymap.set('n', '<space>wl', function()
-      vim.print(vim.lsp.buf.list_workspace_folders())
-    end, desc('[lsp] [w]orkspace folders [l]ist'))
-    keymap.set('n', '<space>rn', vim.lsp.buf.rename, desc('lsp [r]e[n]ame'))
-    keymap.set('n', '<space>wq', vim.lsp.buf.workspace_symbol, desc('lsp [w]orkspace symbol [q]'))
-    keymap.set('n', '<space>dd', vim.lsp.buf.document_symbol, desc('lsp [dd]ocument symbol'))
-    keymap.set('n', '<M-CR>', vim.lsp.buf.code_action, desc('[lsp] code action'))
-    keymap.set('n', '<M-l>', vim.lsp.codelens.run, desc('[lsp] run code lens'))
-    keymap.set('n', '<space>cr', vim.lsp.codelens.refresh, desc('lsp [c]ode lenses [r]efresh'))
-    keymap.set('n', 'gr', vim.lsp.buf.references, desc('lsp [g]et [r]eferences'))
+
+    -- LSP Keybinds 
+
+    -- LSP Keybinds (LazyVim style)
+
+    keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", desc("LSP Info"))
+
+    keymap.set("n", "gd", vim.lsp.buf.definition,      desc("Goto Definition"))
+    keymap.set("n", "gr", vim.lsp.buf.references,      desc("References"))
+    keymap.set("n", "gI", vim.lsp.buf.implementation,  desc("Goto Implementation"))
+    keymap.set("n", "gy", vim.lsp.buf.type_definition, desc("Goto Type Definition"))
+    keymap.set("n", "gD", vim.lsp.buf.declaration,     desc("Goto Declaration"))
+
+    keymap.set("n", "K",  vim.lsp.buf.hover,           desc("Hover"))
+    keymap.set("n", "gK", vim.lsp.buf.signature_help,  desc("Signature Help"))
+    keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, desc("Signature Help (insert)"))
+
+    keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, desc("Code Action"))
+    keymap.set("n", "<leader>cc", vim.lsp.codelens.run,    desc("Run CodeLens"))
+    keymap.set("n", "<leader>cC", vim.lsp.codelens.refresh, desc("Refresh CodeLens"))
+
+    keymap.set("n", "<leader>cR", vim.lsp.buf.rename, desc("Rename File")) -- optional, LazyVim has file rename helper
+    keymap.set("n", "<leader>cr", vim.lsp.buf.rename, desc("Rename Symbol"))
+    keymap.set("n", "<leader>cA", function()
+      vim.lsp.buf.code_action { context = { only = { "source" }, diagnostics = {} } }
+    end, desc("Source Action"))
+
+    keymap.set("n", "]]", vim.diagnostic.goto_next,    desc("Next Diagnostic"))
+    keymap.set("n", "[[", vim.diagnostic.goto_prev,    desc("Prev Diagnostic"))
+    keymap.set("n", "<A-n>", vim.diagnostic.goto_next, desc("Next Diagnostic (Alt-n)"))
+    keymap.set("n", "<A-p>", vim.diagnostic.goto_prev, desc("Prev Diagnostic (Alt-p)"))
 
 
     if client and client.server_capabilities.inlayHintProvider then

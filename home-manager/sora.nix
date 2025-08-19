@@ -37,9 +37,8 @@
     hachimarupop # Cute japanese font
 
     # Testing stuff
-    evil-helix  # This is a editor
+    evil-helix # This is a editor
     swaynotificationcenter # This create notifications
-
 
     kitty # another terminal emulator if something goes wrong
     tree # display cool things

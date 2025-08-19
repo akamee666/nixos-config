@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   colors = config.lib.stylix.colors;
 
   customColors = {
@@ -17,9 +19,7 @@ let
     bluetooth_on_color = "6f7dd8";
     bluetooth_off_color = "565858";
   };
-
 in {
-
   xdg.configFile."waybar/config" = {
     source = ./binary/config;
   };

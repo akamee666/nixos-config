@@ -1,24 +1,22 @@
-{ 
+{
   config,
-  pkgs, 
+  pkgs,
   inputs,
   lib,
   ...
-}:
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./system-packages.nix
+    ./services.nix
 
-{
-  imports = [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./system-packages.nix
-      ./services.nix
-
-      # Flakes
-      inputs.lanzaboote.nixosModules.lanzaboote
-      inputs.flake-programs-sqlite.nixosModules.programs-sqlite
+    # Flakes
+    inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.flake-programs-sqlite.nixosModules.programs-sqlite
   ];
 
   nixpkgs.config.allowUnfree = true;
-
 
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
@@ -58,8 +56,6 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
-
-  
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -105,7 +101,7 @@
     isNormalUser = true;
     home = "/home/ak4m3";
     description = " ak4m3";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [];
     shell = pkgs.fish;
   };

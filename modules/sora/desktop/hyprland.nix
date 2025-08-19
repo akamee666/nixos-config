@@ -42,7 +42,7 @@ in {
       input = {
         kb_layout = "us,br";
         kb_variant = ",thinkpad";
-          kb_options = "grp:alt_shift_toggle, caps:swapescape";
+        kb_options = "grp:alt_shift_toggle, caps:swapescape";
 
         follow_mouse = 1;
 
